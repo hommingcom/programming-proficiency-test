@@ -60,7 +60,7 @@ export default {
         if (monthsDiff > 0) {
           return monthsDiff === 1 ? `${monthsDiff} mes` : `${monthsDiff} meses`;
         }
-        if (dayDiffs > 1) {
+        if (dayDiffs > 0) {
           return dayDiffs === 1 ? `${dayDiffs} día` : `${dayDiffs} días`;
         }
       }
