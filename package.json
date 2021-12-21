@@ -5,15 +5,18 @@
   "scripts": {
     "serve": "node_modules/.bin/vue-cli-service serve resources/main.js",
     "build": "node_modules/.bin/vue-cli-service build resources/main.js",
-    "test:unit": "jest",
+    "test:unit": "jest --watchAll",
     "lint": "node_modules/.bin/vue-cli-service lint resources"
+  },
+  "jest": {
+    "testEnvironment": "node"
   },
   "dependencies": {
     "core-js": "^3.6.5",
-    "vue": "^2.6.11"
+    "vue": "^2.6.11",
+    "vue-router": "^3.5.3"
   },
   "devDependencies": {
-    "chokidar": "^3.5.2",
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-plugin-unit-jest": "~4.5.0",
@@ -21,6 +24,7 @@
     "@vue/eslint-config-airbnb": "^5.0.2",
     "@vue/test-utils": "^1.0.3",
     "babel-eslint": "^10.1.0",
+    "chokidar": "^3.5.2",
     "eslint": "^6.7.2",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-vue": "^6.2.2",
