@@ -1,14 +1,16 @@
 version: '3.7'
 services:
 
-  # PHP & NodeJS Service
   app:
+    container_name: app
     build:
       context: .
     tty: true
     restart: unless-stopped
-    working_dir: /programming-proficiency-test
+    working_dir: /var/www
+    command: sh -c "cd /var/www/ && chmod +x init.sh && ./init.sh && while true; do sleep 1000; done"
     volumes:
-      - ${PWD}:/programming-proficiency-test
+      - ./:/var/www
+      # - ${PWD}:/test                        TODO: en mi maquina ubuntu estaba fallando por eso decidí coger la ruta relativa
     ports:
       - '8080:8080'
