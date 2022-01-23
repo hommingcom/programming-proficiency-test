@@ -1,11 +1,12 @@
 <template>
   <div id="app">
-    WORK HERE
+    <Home :users="users" :propertyTypes="propertyTypes" :properties="properties" />
   </div>
 </template>
 
 <script>
 import { users, propertyTypes, properties } from '@/mocks/api';
+import Home from './components/Home.vue';
 
 export default {
   name: 'App',
@@ -14,5 +15,9 @@ export default {
     propertyTypes,
     properties,
   }),
+  components: { Home },
 };
 </script>
+
+<style>
+</style>
