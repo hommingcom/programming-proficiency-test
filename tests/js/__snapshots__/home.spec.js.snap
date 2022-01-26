@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home.vue debe hacer math con el componente 1`] = `
+<div class="flex flex-col justify-center items-center">
+  <div>
+    <div class="container-nav">
+      <ul class="filter">
+        <li id="show-filter-property">Tipos de Propiedades</li>
+        <li>Usuarios</li>
+        <li>Fechas</li>
+      </ul>
+      <!---->
+      <!---->
+      <!---->
+    </div>
+  </div>
+  <!---->
+  <table class="border-2">
+    <thead class="justify-center">
+      <tr>
+        <th class="border-r-2 p-2 bg-secondary">#</th>
+        <th class="border-r-2 p-2 bg-secondary">Propiedades</th>
+        <th class="border-r-2 p-2 bg-secondary">Meses Alquilada</th>
+        <th class="border-r-2 p-2 bg-secondary">Disponibilidad</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</div>
+`;

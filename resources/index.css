@@ -4,19 +4,35 @@
 
 
 @layer components{
+  .container-nav{
+    @apply bg-primary min-w-min rounded-2xl my-2;
+  }
+
+  .filter{
+    @apply flex gap-3 h-full w-full;
+  }
+
+  .filter ul{
+    @apply w-full bg-blue h-full;
+  }
+
   .filter li {
-    @apply cursor-pointer hover:bg-pink ;
+    @apply cursor-pointer hover:bg-contrast-primary p-3 rounded-xl;
   }
 
   li {
-    @apply cursor-pointer hover:bg-pink text-center;
+    @apply cursor-pointer hover:bg-contrast-primary text-center;
   }
 
   .container-input-date {
-    @apply flex justify-center  items-center;
+    @apply flex justify-center  items-center bg-secondary;
   }
 
-  .active{
-    @apply bg-blue;
+  .container-input-date{
+    @apply p-2 rounded-b-md;
+  }
+
+  .container-input-date label, .container-input-date button {
+    @apply p-2;
   }
 }
