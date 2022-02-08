@@ -1,18 +1,26 @@
 <template>
   <div id="app">
-    WORK HERE
+    <Main />
   </div>
 </template>
 
 <script>
-import { users, propertyTypes, properties } from '@/mocks/api';
+import Main from '@/views/Main.vue';
 
 export default {
   name: 'App',
-  data: () => ({
-    users,
-    propertyTypes,
-    properties,
-  }),
+  components: {
+    Main,
+  },
 };
 </script>
+
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+</style>
