@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    WORK HERE
+    This is the way!
   </div>
 </template>
 

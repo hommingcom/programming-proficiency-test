@@ -1,15 +1,13 @@
-FROM php:8-alpine
+FROM node:lts-alpine
 
 # Essentials
 RUN echo "UTC" > /etc/timezone
 RUN apk add --no-cache zip unzip curl
 
-RUN apk add --no-cache \
-  nodejs \
-  npm
-
-RUN curl -sS https://getcomposer.org/installer -o composer-setup.php
-RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
-RUN rm -rf composer-setup.php
+RUN apk add --update python3 make g++ && rm -rf /var/cache/apk/*
+WORKDIR /usr/src/app
+COPY package*.json ./
+COPY . .
+RUN npm install
 
 EXPOSE 8080
