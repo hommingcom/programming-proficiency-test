@@ -17,15 +17,12 @@ class Bakery
         /** Loop each ingredient in recipe */
         foreach ($recipe as $key => $val){
             /**If not exist an ingredient for the recipe or the cuantity is less than the needed returns 0  */
-            if(!isset($ingredients[$key]) || $ingredients[$key] < $val){
-                return 0;
-            }
+            if(!isset($ingredients[$key]) || $ingredients[$key] < $val) return 0;
             /**Calculates how much recipes can do with this particular ingredient */
             $times = intval($ingredients[$key] / $val);
             /**If is the first iteraction or the $numberOfCakes we can do with this ingredient is less than $numberOfCakes update $numberOfCakes */
-            if(!isset($numberOfCakes) || $numberOfCakes > $times){
+            if(!isset($numberOfCakes) || $numberOfCakes > $times)
                 $numberOfCakes = $times;
-            }
         }
         return $numberOfCakes;
     }
