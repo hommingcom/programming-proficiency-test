@@ -1,18 +1,17 @@
 <template>
   <div id="app">
-    WORK HERE
+    <router-view />
   </div>
 </template>
 
-<script>
-import { users, propertyTypes, properties } from '@/mocks/api';
+<style>
 
-export default {
-  name: 'App',
-  data: () => ({
-    users,
-    propertyTypes,
-    properties,
-  }),
-};
-</script>
+#app {
+  background: linear-gradient(120deg, rgb(20, 20, 20), rgb(14, 8, 66));
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+</style>

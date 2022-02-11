@@ -9,6 +9,6 @@ services:
     restart: unless-stopped
     working_dir: /programming-proficiency-test
     volumes:
-      - ${PWD}:/programming-proficiency-test
+      - ./programming-proficiency-test/dist
     ports:
       - '8080:8080'
