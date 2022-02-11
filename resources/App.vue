@@ -1,6 +1,11 @@
 <template>
   <div id="app">
     This is the way!
+
+    <router-link to="/">Home</router-link>
+    <router-link to="/prueba">Prueba</router-link>
+
+    <router-view/>
   </div>
 </template>
 
