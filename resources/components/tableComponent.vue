@@ -14,6 +14,10 @@
             </tr>
           </thead>
           <tbody>
+            <tr v-if="!dataBody.length">
+              <td colspan="6" class="py-4 px-6 border-b
+              border-gray-200 text-center" >No hay datos</td>
+            </tr>
             <tr class="hover:bg-gray-100" v-for="data in dataBody" :key="data.id">
               <td class="py-4 px-6 border-b border-gray-200">
                 {{data.owner}}
