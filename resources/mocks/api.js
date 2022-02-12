@@ -35,7 +35,7 @@ export const properties = [
     typeId: 1,
     name: 'Penthouse - General Peron 32',
     rentedFrom: new Date(2020, 1, 22),
-    rentedTo: new Date(2020, 7, 7),
+    rentedTo: new Date(2022, 7, 7),
   },
   {
     id: 2,
@@ -51,14 +51,14 @@ export const properties = [
     typeId: 2,
     name: 'Parking - Nuevos Ministerios',
     rentedFrom: new Date(2020, 3, 9),
-    rentedTo: new Date(2020, 4, 7),
+    rentedTo: new Date(2022, 4, 7),
   },
   {
     id: 7,
     userId: 2,
     typeId: 2,
     name: 'Parking - Gran Via 56',
-    rentedFrom: new Date(2021, 4, 21),
+    rentedFrom: new Date(2022, 4, 21),
     rentedTo: null,
   },
   {
@@ -83,6 +83,6 @@ export const properties = [
     typeId: 3,
     name: 'Office - Puente Segovia',
     rentedFrom: new Date(2021, 2, 2),
-    rentedTo: null,
+    rentedTo: new Date(2021, 9, 2),
   },
 ];
