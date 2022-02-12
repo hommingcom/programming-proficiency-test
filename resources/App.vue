@@ -1,18 +1,18 @@
 <template>
   <div id="app">
-    This is the way!
-
-    <router-link to="/">Home</router-link>
-    <router-link to="/prueba">Prueba</router-link>
-
+  <Header/>
     <router-view/>
+    <Footer/>
   </div>
 </template>
 
 <script>
 import { users, propertyTypes, properties } from '@/mocks/api';
+import Header from './components/common/header.vue';
+import Footer from './components/common/footer.vue';
 
 export default {
+  components: { Header, Footer },
   name: 'App',
   data: () => ({
     users,
