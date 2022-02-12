@@ -133,6 +133,7 @@ export default {
   },
   mounted() {
     this.getPropertiesWithOwner();
+    this.getUrlQueryParams();
   },
   methods: {
     resetFilters() {
@@ -180,6 +181,29 @@ export default {
       }
 
       return false;
+    },
+    getUrlQueryParams() {
+      const params = this.$route.query;
+      const paramsKeys = Object.keys(params);
+
+      paramsKeys.forEach((key) => {
+        switch (key) {
+          case 'type':
+            this.filters.type = params[key];
+            break;
+          case 'rentedFrom':
+            this.filters.rentedFrom = params[key];
+            break;
+          case 'rentedTo':
+            this.filters.rentedTo = params[key];
+            break;
+          case 'owner':
+            this.filters.owner = params[key];
+            break;
+          default:
+            break;
+        }
+      });
     },
   },
 };
