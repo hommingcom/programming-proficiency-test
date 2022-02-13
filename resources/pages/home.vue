@@ -1,6 +1,17 @@
 <template>
   <div class="container px-3 flex flex-col mx-auto">
-    <section class="mb-5 px-3 flex flex-col md:flex-row md:items-center md:justify-around
+
+      <div class="block md:hidden mb-5">
+        <button :class="open ? 'bg-green-600 text-white' :'bg-transparent text-black'"
+         class=" border-2 border-green-400 px-4 py-2 rounded-3xl focus:bg-green-600
+        focus:text-white font-bold tracking-wider hover:cursor-pointer w-full"
+          @click="toggle()">
+          Filtrar
+        </button>
+      </div>
+
+    <section :class="open ? 'block' :'hidden' "
+    class="mb-5 px-3 md:flex flex-col md:flex-row md:items-center md:justify-around
         space-y-5 md:space-y-0">
       <div class="mb-2 md:mb-0">
         <div class="px-4 py-2 border-2 border-grey rounded-3xl relative">
@@ -79,6 +90,7 @@ export default {
   components: { tableComponent },
   name: 'Home',
   data: () => ({
+    open: false,
     users,
     propertyTypes,
     properties,
@@ -131,6 +143,9 @@ export default {
     this.getUrlQueryParams();
   },
   methods: {
+    toggle() {
+      this.open = !this.open;
+    },
     resetFilters() {
       this.filters.owner = '';
       this.filters.type = '';
