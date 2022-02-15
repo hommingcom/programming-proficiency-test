@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Classes\BakeryDM;
+
 class Bakery
 {
     /**
@@ -14,10 +16,10 @@ class Bakery
      */
     public static function calculateOutput(array $recipe, array $ingredients): int
     {
-        $numberOfCakes = 0;
+        // Data manger to handle de logic 
+        $bakery_DM = new BakeryDM();
 
-        // Complete the function
-
-        return $numberOfCakes;
+        // Return de equal value in Roman
+        return $bakery_DM->possibleCakes($recipe, $ingredients);
     }
 }

@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Classes\ArabicToRomanDM;
+
 class ArabicToRoman
 {
     /**
@@ -13,10 +15,10 @@ class ArabicToRoman
      */
     public static function transform(int $arabicNumber): string
     {
-        $romanNumber = '';
-
-        // Complete the function
-
-        return $romanNumber;
+        // Data manger to handle de logic 
+        $arabicToRoman_DM = new ArabicToRomanDM();
+        
+        // Return de equal value in Roman
+        return $arabicToRoman_DM->convert($arabicNumber);
     }
 }
