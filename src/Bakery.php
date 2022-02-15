@@ -19,7 +19,7 @@ class Bakery
         // Data manger to handle de logic 
         $bakery_DM = new BakeryDM();
 
-        // Return de equal value in Roman
+        // Return total cakes
         return $bakery_DM->possibleCakes($recipe, $ingredients);
     }
 }
