@@ -14,9 +14,15 @@ class Bakery
      */
     public static function calculateOutput(array $recipe, array $ingredients): int
     {
-        $numberOfCakes = 0;
+        $numberOfCakes = INF;
 
-        // Complete the function
+        foreach ($recipe as $ingredient => $amount) {
+            if (!array_key_exists($ingredient, $ingredients) || $numberOfCakes == 0) return 0;
+
+            $available = $ingredients[$ingredient];
+            $cakes = intdiv($available, $amount);
+            $numberOfCakes = min($numberOfCakes, $cakes);
+        }
 
         return $numberOfCakes;
     }
