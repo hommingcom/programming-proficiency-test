@@ -13,3 +13,4 @@ RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 RUN rm -rf composer-setup.php
 
 EXPOSE 8080
+EXPOSE 3000
