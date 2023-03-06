@@ -7,8 +7,8 @@ RUN apk add --no-cache zip unzip curl
 RUN apk add --no-cache \
   nodejs \
   npm
-
-RUN curl -sS https://getcomposer.org/installer -o composer-setup.php
+# El primer comando me descarga este instalador || Que se llamará composer-setup.php // Después lo correremos
+RUN curl -sS https://getcomposer.org/installer -o composer-setup.php  
 RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 RUN rm -rf composer-setup.php
 
