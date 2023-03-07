@@ -18,7 +18,7 @@ class ArabicToRoman
      But this approach was too long and filled with conditionals, that even if converting them to ternary operators
      would have been tedious and unnecesary long.
      That brings me to the final approach where I used an associative array that contains the equivalences of roman
-     to decimal numbers ($romanToDecimalEquivalences).
+     to decimal numbers ($romanToArabicEquivalences).
 
      SPOILER!!  This function will just work for numbers under 4000, so 3999 will be the highest possible operable
      number, which is "casually" also the highest number, I guessed this was the answer that you were waiting for.
@@ -27,7 +27,7 @@ class ArabicToRoman
      */
     public static function transform(int $arabicNumber): string
     {
-        $romanToDecimalEquivalences = [
+        $romanToArabicEquivalences = [
             'M' => 1000,
             'CM' => 900,
             'D' => 500,
@@ -43,90 +43,27 @@ class ArabicToRoman
             'I' => 1
         ];
 
-            $numberToConvert = $arabicNumber;
+            if($arabicNumber <= 0) return '';
 
+            //I copy the arabic number in a new variable to iterate with, and avoid modifying the function's parameter
+            $arabicNumberToConvert = $arabicNumber;
+
+            //Here I had a little dilema about using foreach or a map (array_map in this case), I decided that the map
+            //function was more readable (later I read an article speaking of the potentially faster performance of a 
+            //map vs foreach and I had enough arguments to justify my decision) || use to get equivalences and the arabicNum
+            $romanNumber = array_map(function ($key) use ($romanToArabicEquivalences, &$arabicNumberToConvert) {
+                $romanNumberValue = $romanToArabicEquivalences[$key];
+                $timesToRepeat = floor($arabicNumberToConvert / $romanNumberValue);
+                $arabicNumberToConvert %= $romanNumberValue;
+                //Repeat the roman number x $timesToRepeat
+                return str_repeat($key, $timesToRepeat);
+            }, array_keys($romanToArabicEquivalences));
             
-
-           /*  $letters = array_map(function ($key) use ($romanToDecimalEquivalences, &$numberToConvert) ) */
+          
+            //As we actually have an array of romanNumbers, we convert it to a string with the implode function
+            //the first argument is the space in between each element, none in our scenario (""), the second argument
+            //is the proper array we want to convert to string
+            return implode("", $romanNumber);
     }
 }
 
-/*  $romanToDecimalEquivalences = ['I' => 1, 'IV' => 4, 'V' => 5, 'IX' => 9, 'X' => 10, 'XL' => 40, 'L' => 50, 'XC' => 90, 'C' => 100, 'CD' => 400, 'D' => 500, 'CM' => 900, 'M' => 1000]
-         */
-
-/*
-This was my first aproach to the function, but since it was full of conditionals and it's too long I've taken a different approach more simple and compact
- using an array of equivalences.
-
-
-function getFinalDecimalToRoman($num) {
-    $romanNumber = '';
-
-    $romanNumber .= thousands($num);
-    $num = $num % 1000;
-
-    $romanNumber .= hundreds($num);
-    $num = $num % 100;
-
-    $romanNumber .= tens($num);
-    $num = $num % 10;
-
-    $romanNumber .= ones($num);
-
-    return $romanNumber;
-  }
-
-  function getRomanThousands($num) {
-    $result = '';
-
-    while ($num >= 1000) {
-      $result .= 'M';
-      $num -= 1000;
-    }
-
-    return $result;
-  }
-
-  function getRomanHundreds($num) {
-    if ($num >= 900) {
-      return 'CM' . hundreds($num - 900);
-    } else if ($num >= 500) {
-      return 'D' . hundreds($num - 500);
-    } else if ($num >= 400) {
-      return 'CD' . hundreds($num - 400);
-    } else if ($num >= 100) {
-      return 'C' . hundreds($num - 100);
-    } else {
-      return '';
-    }
-  }
-
-  function getRomanTens($num) {
-    if ($num >= 90) {
-      return 'XC' . tens($num - 90);
-    } else if ($num >= 50) {
-      return 'L' . tens($num - 50);
-    } else if ($num >= 40) {
-      return 'XL' . tens($num - 40);
-    } else if ($num >= 10) {
-      return 'X' . tens($num - 10);
-    } else {
-      return '';
-    }
-  }
-
-  function getRomanOnes($num) {
-    if ($num >= 9) {
-      return 'IX' . ones($num - 9);
-    } else if ($num >= 5) {
-      return 'V' . ones($num - 5);
-    } else if ($num >= 4) {
-      return 'IV' . ones($num - 4);
-    } else if ($num >= 1) {
-      return 'I' . ones($num - 1);
-    } else {
-      return '';
-    }
-  }
-
-return $romanNumber; */
