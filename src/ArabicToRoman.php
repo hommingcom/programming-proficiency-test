@@ -2,6 +2,8 @@
 
 namespace App;
 
+use ArrayIterator;
+
 class ArabicToRoman
 {
     /**
@@ -15,7 +17,31 @@ class ArabicToRoman
     {
         $romanNumber = '';
 
-        // Complete the function
+        $map = [
+            1000    => 'M',
+            900     => 'CM',
+            500     => 'D',
+            400     => 'CD',
+            100     => 'C',
+            90      => 'XC',
+            50      => 'L',
+            40      => 'XL',
+            10      => 'X',
+            9       => 'IX',
+            5       => 'V',
+            4       => 'IV',
+            1       => 'I',
+        ];
+
+        $iterator = new ArrayIterator($map);
+        while($iterator->valid()){
+            $key = $iterator->key();
+            while($arabicNumber >= $key){
+                $romanNumber .= $iterator->current();
+                $arabicNumber -= $key;
+            }
+            $iterator->next();
+        }
 
         return $romanNumber;
     }
