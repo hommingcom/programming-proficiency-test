@@ -14,19 +14,40 @@ class ArabicToRoman
 
      /*
      There are different ways of approaching this problem, we could do it by creating a higher level function
-     that uses different functions (getRomanHundred, getRomanThousand ...).
-     But this approach was too long and filled with conditionals that, even if converting it with ternary operators
-     would have been tedious.
+     that uses different functions to get the final roman number (getRomanHundred, getRomanThousand ...).
+     But this approach was too long and filled with conditionals, that even if converting them to ternary operators
+     would have been tedious and unnecesary long.
      That brings me to the final approach where I used an associative array that contains the equivalences of roman
      to decimal numbers ($romanToDecimalEquivalences).
+
+     SPOILER!!  This function will just work for numbers under 4000, so 3999 will be the highest possible operable
+     number, which is "casually" also the highest number, I guessed this was the answer that you were waiting for.
+     Nevertheless, for higher numbers we could add new key-values to our array, as also romans did; since we can't
+     add lines on top of the roman numbers, we would use the low bar ---> _I; _V; _X; _L; _C; _D; & _M (1 million).
      */
     public static function transform(int $arabicNumber): string
     {
-        $romanNumber = '';
+        $romanToDecimalEquivalences = [
+            'M' => 1000,
+            'CM' => 900,
+            'D' => 500,
+            'CD' => 400,
+            'C' => 100,
+            'XC' => 90,
+            'L' => 50,
+            'XL' => 40,
+            'X' => 10,
+            'IX' => 9,
+            'V' => 5,
+            'IV' => 4,
+            'I' => 1
+        ];
 
-        // Complete the function
+            $numberToConvert = $arabicNumber;
 
-        return $romanNumber;
+            
+
+           /*  $letters = array_map(function ($key) use ($romanToDecimalEquivalences, &$numberToConvert) ) */
     }
 }
 
