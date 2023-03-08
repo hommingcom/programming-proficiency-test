@@ -1,12 +1,12 @@
 <template>
-    <div class="header" id="header">
+    <header class="header" id="header">
         <h1>{{ title }}</h1>
-    </div>
+    </header>
 </template>
 
 <script>
 export default {
-  name: 'Header',
+  name: 'HeaderX',
   props: {
     title: {
       type: String,
@@ -17,9 +17,5 @@ export default {
 </script>
 
 <style>
-    .header {
 
-}
 </style>
-
-export default Header;
