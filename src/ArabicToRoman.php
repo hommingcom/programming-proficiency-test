@@ -53,7 +53,9 @@ class ArabicToRoman
             //map vs foreach and I had enough arguments to justify my decision) || use to get equivalences and the arabicNum
             $romanNumber = array_map(function ($key) use ($romanToArabicEquivalences, &$arabicNumberToConvert) {
                 $romanNumberValue = $romanToArabicEquivalences[$key];
+                //Calculating number of times the romanNumber is repeated
                 $timesToRepeat = floor($arabicNumberToConvert / $romanNumberValue);
+                //Update the number and get the remainder after the romanNumber has been added
                 $arabicNumberToConvert %= $romanNumberValue;
                 //Repeat the roman number x $timesToRepeat
                 return str_repeat($key, $timesToRepeat);
