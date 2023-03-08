@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Header title="Homming Programming Proficiency Test! 👨🏻‍💻"/>
-    <Table/>
+    <Table />
     <Footer createdBy="Made by Friosn with 💚 and 🧉"/>
   </div>
 </template>
