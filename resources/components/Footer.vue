@@ -20,5 +20,3 @@ export default {
 <style>
 
 </style>
-
-export default Footer;

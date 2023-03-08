@@ -1,16 +1,17 @@
 <template>
   <div id="app">
-    <HeaderX title="Hey?????"/>
-    <Home/>
-    Hola
+    <Header title="Homming Programming Proficiency Test! 👨🏻‍💻"/>
+    <Table/>
+    <Footer createdBy="Made by Friosn with 💚 and 🧉"/>
   </div>
 </template>
 
 <script>
 import { users, propertyTypes, properties } from '@/mocks/api';
 
-import HeaderX from '@/components/HeaderX.vue';
-import Home from '@/views/Home.vue';
+import Footer from '@/components/Footer.vue';
+import Header from '@/components/Header.vue';
+import Table from '@/views/Table.vue';
 
 export default {
   name: 'App',
@@ -19,6 +20,6 @@ export default {
     propertyTypes,
     properties,
   }),
-  components: { HeaderX, Home },
+  components: { Header, Footer, Table },
 };
 </script>
