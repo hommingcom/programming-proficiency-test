@@ -23,3 +23,15 @@ export default {
   components: { Header, Footer, Table },
 };
 </script>
+
+<style>
+  #app {
+    height: 90vh;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+  }
+</style>

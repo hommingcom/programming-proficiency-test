@@ -13,8 +13,8 @@ export default {
 </script>
 
 <template>
-    <div class="table">
-      <table class="testTable">
+    <div >
+      <table >
         <thead>
           <tr>
             <th>Property ID</th>
@@ -40,6 +40,7 @@ export default {
 </template>
 
 <style>
+
   .table {
     border: 1px solid black;
     display: flex;

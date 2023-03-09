@@ -1,5 +1,5 @@
 <template>
-    <footer class="footer" id="footer">
+    <footer id="footer">
         <h4>{{ createdBy }}</h4>
     </footer>
 </template>
@@ -18,5 +18,7 @@ export default {
 </script>
 
 <style>
-
+  #footer {
+    padding: 1rem;
+  }
 </style>

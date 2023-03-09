@@ -17,5 +17,9 @@ export default {
 </script>
 
 <style>
-
+  #header {
+    padding: 2rem;
+    background-color: #f0fcf7;
+    border-radius: 50%;
+  }
 </style>
