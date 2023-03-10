@@ -4,7 +4,7 @@ namespace App;
 
 class Bakery
 {
-    /**
+     /**
      * Calculate the output of cakes for a giver recipe
      *
      * @param array $recipe      Contains the necessary ingredients to make one cake
@@ -12,9 +12,8 @@ class Bakery
      *
      * @return int The number of cakes you can bake
      */
-    public static function calculateOutput(array $recipe, array $ingredients): int
+    public static function calculateOutput(): int
     {
-
 
         // $recipe = [
         //     'ingrediente 1' => 500,
@@ -25,30 +24,37 @@ class Bakery
         // ];
 
 
+
+
         // $ingredients = [
         //     'ingrediente 1' => 12500,
         //     'ingrediente 2' => 13236,
-        //     'ingrediente 3' => 12125,
+        //     'ingrediente 3' => 11125,
         //     'ingrediente 4' => 12656,
-        //     'ingrediente 5' => 1400
+        //     'ingrediente 5' => 12200
         // ];
+
 
         $numberOfCakes = 0;
 
+
         do{
             //comprueba que todos los ingredientes tienen cantidad suficiente para realizar la receta
-            $ingredients = $this->checkIngredients($recipe,$ingredients);
+            $ingredients = self::checkIngredients($recipe,$ingredients);
             if($ingredients != false) $numberOfCakes++;              
            
         }while($ingredients != false);
        
 
+
         return $numberOfCakes;
     }
 
-    
 
-    public function checkIngredients($recipe,$ingredients){
+   
+
+
+    public static function checkIngredients($recipe,$ingredients){
         //recorre el array de ingredientes
         foreach($ingredients as $key => $value){
             if($recipe[$key] <= $value){
@@ -61,10 +67,16 @@ class Bakery
         }
 
 
+
+
         return $ingredients;
 
 
+
+
     }
+
+
 
 
 }
