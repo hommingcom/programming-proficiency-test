@@ -16,12 +16,16 @@ class ArabicToRoman
         $romanNumber = '';
 
 
+
+
         if($arabicNumber >= 1000 || $arabicNumber <= 0){
             return 'el número no es válido';
         }
                
         //comprobamos que el numero no tenga valor fijo
-        $romanNumber = $this->numbers($arabicNumber);
+        $romanNumber = self::numbers($arabicNumber);
+
+
 
 
         //si no tiene valor fijo
@@ -34,19 +38,22 @@ class ArabicToRoman
                 //comprobamos que el numero no sea 0
                 if($value != 0){
                     //hayamos la posicion del número
-                    $checkPosition = $this->checkPosition($key,$value,$separarNumero);
+                    $checkPosition = self::checkPosition($key,$value,$separarNumero);
+
+
 
 
                     $number = intval($checkPosition['number']);
                     $position = $checkPosition['position'];
                
                     //comprobamos si el numero tiene valor fijo
-                    $letter = $this->numbers($number);
-                    
+                    $letter = self::numbers($number);
+                   
                     //si no tiene valor fijo realizamos los calculos
                     if($letter == ''){
-                        $letter = $this->checkNumber($number,$position);
+                        $letter = self::checkNumber($number,$position);
                     }
+
 
                     //concatenamos el número
                     $romanNumber = $romanNumber.$letter;
@@ -55,19 +62,23 @@ class ArabicToRoman
             }
            
         }
-        
+       
         return $romanNumber;
     }
+
 
    
     /**
      * Recibe un número árabico y comprueba si contiene valor
      *
-     * @param int $number 
+     * @param int $number
      *
      * @return string Número romano equivalente
      */
-    public function numbers($number){
+   
+    public static function numbers($number){
+
+
 
 
         switch($number){
@@ -98,24 +109,31 @@ class ArabicToRoman
         }
 
 
+
+
         return $letter;
     }
+
+
 
 
     /**
      * Recibe un numero y la posicion del numero
      *
-     * @param int $number 
-     * 
+     * @param int $number
+     *
      * @param int $position
      *
      * @return string The roman number equivalent (e.g. CXXI)
      */
 
-    public function checkNumber($number,$position){
+
+    public static function checkNumber($number,$position){
+
 
         //hayamos los valores de los números principales
-        $letrasPrincipales = $this->valuePosition($position);
+        $letrasPrincipales = self::valuePosition($position);
+
 
         //comprobamos si el número es menor al valor intermedio
         if($number<$letrasPrincipales['intermediateValue']){
@@ -126,10 +144,11 @@ class ArabicToRoman
                 $letter = $letrasPrincipales['smallLetter'].$letrasPrincipales['middleLetter'];
             }else{
 
+
                 $letter = '';              
                
                 $counter = 0;
-                //realizamos un bucle no mas de 3 veces hasta hayar el numero 
+                //realizamos un bucle no mas de 3 veces hasta hayar el numero
                 for($i = 0;$i <=($letrasPrincipales['valueSmall']+3);$i++){
                     //si el numero no es correcto, añadimos la letra de menor valor hasta que el numero sea correcto
                     if($number == $counter){
@@ -143,6 +162,8 @@ class ArabicToRoman
             }
 
 
+
+
         }else{
             //comprobamos si el valor del número es menor de 1 del valor mayor
             if($number == ($letrasPrincipales['bigValue']-$letrasPrincipales['value'])){
@@ -154,7 +175,8 @@ class ArabicToRoman
                 //controlamos que el contador comienze con el valor intermedio
                 $counter = $letrasPrincipales['intermediateValue'];
 
-                //realizamos un bucle no mas de 3 veces hasta hayar el numero 
+
+                //realizamos un bucle no mas de 3 veces hasta hayar el numero
                 for($i = $letrasPrincipales['intermediateValue'];$i <=($letrasPrincipales['intermediateValue']+3);){
                     //si el numero no es correcto, añadimos la letra de menor valor hasta que el numero sea correcto
                     if($number == $counter){
@@ -162,55 +184,59 @@ class ArabicToRoman
                     }else{
                         $letter = $letter.$letrasPrincipales['smallLetter'];
                         //controlamos que la suma se realize con el valor adecuado según la posición del número
-                        $counter = $contador+$letrasPrincipales['value'];
+                        $counter = $counter+$letrasPrincipales['value'];
                     }
                 }
             }
+
+
 
 
         }
         return $letter;
     }
 
+
     /**
      * Recibe la posicion del numero
      *
-     * @param int $postion 
+     * @param int $postion
      *
      * @return array con los valores de los números según la posición
      */
 
-    public function valuePosition($position){
+
+    public static function valuePosition($position){
         switch($position){
             case 2:
                 $array = [
-                    'smallLetter' => $this->numeros(1),
+                    'smallLetter' => self::numbers(1),
                     'valueSmall' => 1,
-                    'middleLetter' => $this->numeros(5),
+                    'middleLetter' => self::numbers(5),
                     'intermediateValue' => 5,
-                    'bigLetter' => $this->numeros(10),
+                    'bigLetter' => self::numbers(10),
                     'bigValue' => 10,
                     'value' => 1,
                 ];
                 break;
             case 1:
                 $array = [
-                    'smallLetter' => $this->numeros(10),
+                    'smallLetter' => self::numbers(10),
                     'valueSmall' => 10,
-                    'middleLetter' => $this->numeros(50),
+                    'middleLetter' => self::numbers(50),
                     'intermediateValue' => 50,
-                    'bigLetter' => $this->numeros(100),
+                    'bigLetter' => self::numbers(100),
                     'bigValue' => 100,
                     'value' => 10,
                 ];
                 break;
             case 0:
                 $array = [
-                    'smallLetter' => $this->numeros(100),
+                    'smallLetter' => self::numbers(100),
                     'valueSmall' => 100,
-                    'middleLetter' => $this->numeros(500),
+                    'middleLetter' => self::numbers(500),
                     'intermediateValue' => 500,
-                    'bigLetter' => $this->numeros(1000),
+                    'bigLetter' => self::numbers(1000),
                     'bigValue' => 1000,
                     'value' => 100
                 ];
@@ -218,23 +244,30 @@ class ArabicToRoman
         }
 
 
+
+
         return $array;
     }
+
 
     /**
      * Comprueba la posicion del numero
      *
      * @param int $key
-     * 
+     *
      * @param int $number
-     * 
-     * @param int $separarNumero 
+     *
+     * @param int $separarNumero
      *
      * @return array La posicion y el número
      */
 
 
-    public function checkPosition($key,$number,$separarNumero){
+
+
+    public static function checkPosition($key,$number,$separarNumero){
+
+
 
 
         if(count($separarNumero)==2 && $key == 0){
@@ -256,6 +289,7 @@ class ArabicToRoman
         }
        
     }
+
 
 
 }
