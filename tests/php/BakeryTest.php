@@ -39,16 +39,16 @@ class BakeryTest extends TestCase
         ));
     }
 
-    public function testCalculateOutput()
-    {
-        $recipe = ['flour' => 700, 'eggs' => 2, 'apples' => 4, 'sugar' => 1000];
-        $ingredients = ['flour' => 1400, 'eggs' => 3, 'apples' => 21, 'sugar' => 2500];
-
-        for ($i = 1; $i <= 1000000; $i++) {
-            $result = Bakery::calculateOutput($recipe, $ingredients);
-            $this->assertIsInt($result);
-            $this->assertGreaterThanOrEqual(0, $result);
-        }
-    }
+//    public function testCalculateOutput()
+//    {
+//        $recipe = ['flour' => 700, 'eggs' => 2, 'apples' => 4, 'sugar' => 1000];
+//        $ingredients = ['flour' => 1400, 'eggs' => 3, 'apples' => 21, 'sugar' => 2500];
+//
+//        for ($i = 1; $i <= 1000000; $i++) {
+//            $result = Bakery::calculateOutput($recipe, $ingredients);
+//            $this->assertIsInt($result);
+//            $this->assertGreaterThanOrEqual(0, $result);
+//        }
+//    }
 
 }

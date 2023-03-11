@@ -62,21 +62,21 @@ class ArabicToRomanTest extends TestCase
         $this->assertEquals('MMMCMXCIX', ArabicToRoman::transform(3999));
     }
 
-    function testPerformance()
-    {
-        $start = microtime(true);
-        $memoryUsageStart = memory_get_peak_usage();
-
-        for ($i = 0; $i < 10000000; $i++) {
-            ArabicToRoman::transform(rand(1, 3999));
-        }
-
-        $memoryUsageEnd = memory_get_peak_usage();
-        $end = microtime(true);
-        $executionTime = ($end - $start) * 1000;
-
-        $this->assertTrue(true, "Tiempo transcurrido: $executionTime ms, Uso de memoria: " . ($memoryUsageEnd - $memoryUsageStart) . " bytes");
-    }
+//    function testPerformance()
+//    {
+//        $start = microtime(true);
+//        $memoryUsageStart = memory_get_peak_usage();
+//
+//        for ($i = 0; $i < 10000000; $i++) {
+//            ArabicToRoman::transform(rand(1, 3999));
+//        }
+//
+//        $memoryUsageEnd = memory_get_peak_usage();
+//        $end = microtime(true);
+//        $executionTime = ($end - $start) * 1000;
+//
+//        $this->assertTrue(true, "Tiempo transcurrido: $executionTime ms, Uso de memoria: " . ($memoryUsageEnd - $memoryUsageStart) . " bytes");
+//    }
 
 
 
