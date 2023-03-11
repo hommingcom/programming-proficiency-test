@@ -24,18 +24,24 @@
     <div v-show="openFilter" class="p-2 px-3 bg-gray-100">
       <div v-if="type === 'checkbox'">
         <ul class="space-y-2">
-          <li v-for="(item, index) in items" :key="`filter-item-${index}`" class="flex items-center space-x-2">
+          <li
+            v-for="(item, index) in items"
+            :key="`filter-item-${index}`"
+            class="flex items-center space-x-2"
+          >
             <input
               type="checkbox"
               :id="`filter-item-${title}-${index}`"
               class="w-4 h-4 border-gray-300 rounded-md"
             />
-            <label :for="`filter-item-${title}-${index}`" class="text-sm truncate">{{ item }}</label>
+            <label :for="`filter-item-${title}-${index}`" class="text-sm truncate">{{
+              item
+            }}</label>
           </li>
         </ul>
       </div>
       <div v-else-if="type === 'date'">
-        <input type="date" />
+        <input type="date" class="w-full px-2 py-1 border border-gray-300 rounded-md" />
       </div>
     </div>
   </div>
@@ -59,7 +65,7 @@ export default {
     },
   },
   data: () => ({
-    openFilter: false,
+    openFilter: true,
   }),
 };
 </script>
