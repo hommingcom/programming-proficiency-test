@@ -1,6 +1,10 @@
 <template>
   <div>
-    <TablePropertiesFilter @search="setsearchQuery" />
+    <TablePropertiesFilter
+      @search="setsearchQuery"
+      :properties="filteredData"
+      :filterTypes="filterTypes"
+    />
     <table class="w-full overflow-hidden border border-collapse rounded-md shadow table-auto">
       <thead class="bg-gray-50">
         <tr class="text-xs text-left text-gray-900 md:text-sm">
@@ -87,6 +91,13 @@ export default {
       { label: 'Rented to', field: 'rentedTo' },
       { label: 'Rented for (months)', field: 'rentedDuration' },
       { label: '', field: 'status' },
+    ],
+    filterTypes: [
+      { title: 'Rented from', field: 'rentedFrom', type: 'date' },
+      { title: 'Rented to', field: 'rentedTo', type: 'date' },
+      { title: 'User', field: 'user', type: 'checkbox' },
+      { title: 'Type', field: 'type', type: 'checkbox' },
+      { title: 'Status', field: 'status', type: 'checkbox' },
     ],
     page: 1,
     searchQuery: '',
