@@ -26,8 +26,8 @@ export default {
       const user = urlParams.get('user');
 
       const filtered = user != null
-        ? this.properties.filter((property) => property.userId === parseInt(user, 10))
-        : this.properties;
+        ? this.propertiesMock.filter((property) => property.userId === parseInt(user, 10))
+        : this.propertiesMock;
 
       return filtered.map((property) => ({
         ...property,
@@ -38,6 +38,29 @@ export default {
         rentedDuration: this.rentedDurationInMonth(property.rentedFrom, property.rentedTo),
         status: this.getStatus(property.rentedFrom, property.rentedTo),
       }));
+    },
+    // Add 1000 more properties to test pagination
+    propertiesMock() {
+      const data = [...this.properties];
+
+      for (let i = 0; i < 1000; i += 1) {
+        data.push({
+          id: i + 9,
+          userId: Math.floor(Math.random() * 10) + 1,
+          typeId: Math.floor(Math.random() * 3) + 1,
+          name: `Property ${i + 1}`,
+          rentedFrom: new Date(
+            2020,
+            Math.floor(Math.random() * 12),
+            Math.floor(Math.random() * 28),
+          ),
+          rentedTo: Math.floor(Math.random() * 2)
+            ? new Date(2021, Math.floor(Math.random() * 12), Math.floor(Math.random() * 28))
+            : null,
+        });
+      }
+
+      return data;
     },
     // To avoid looping through the array every time we need to get the user name
     userById() {
