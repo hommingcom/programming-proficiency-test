@@ -8,6 +8,8 @@ https://stackoverflow.com/questions/69692842/error-message-error0308010cdigital-
 
 I've done the both parts of the assignment. The PHP part is the easiest one as there only 2 algorithms to implement. The Javascript part I've done all the bullet points and added some unit tests.
 
+I've made the table component responsable of paginating the data and filtering it. I've also added a filter component that allows the user to filter the data. The components are not generic at all what they are easy to escalate adding new data to `columns` and `filterTypes` arrays in the `TableProperties` component.
+
 ## Points to improve tht I didn't have time to do
 
 - Responsive design. The table should be collapses into an accordion or enable horizontal scrolling on mobile devices.
