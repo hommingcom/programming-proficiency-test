@@ -25,9 +25,25 @@
       </button>
       <div
         v-show="openFilter"
+        id="filter"
         class="absolute w-64 mt-1 bg-white border border-gray-200 rounded-md shadow-sm"
       >
-        <h2 class="p-2 px-3 text-lg font-bold border-b border-gray-100">Filters</h2>
+        <div class="flex justify-between p-2 px-3 border-b border-gray-100">
+          <h2 class="text-lg font-bold">Filters</h2>
+          <button type="button" @click="openFilter = false">
+            <svg
+              class="w-5 h-5 text-gray-600"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <path
+                d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z"
+              ></path>
+            </svg>
+          </button>
+        </div>
         <div class="overflow-auto max-h-72">
           <FilterSection
             v-for="(filter, index) in sections"
@@ -39,22 +55,6 @@
             @addedFilter="addedFilter"
             @removedFilter="removedFilter"
           />
-        </div>
-        <div class="flex p-2 space-x-2 border-t border-gray-100">
-          <button
-            type="button"
-            class="w-full p-2 text-sm font-medium text-gray-900 bg-red-200 rounded-md"
-            @click="openFilter = false"
-          >
-            Cancel
-          </button>
-          <button
-            type="button"
-            class="w-full p-2 text-sm font-medium text-gray-900 bg-gray-200 rounded-md"
-            @click="filterData"
-          >
-            Apply
-          </button>
         </div>
       </div>
     </div>
