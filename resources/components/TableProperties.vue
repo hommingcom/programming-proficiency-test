@@ -1,9 +1,10 @@
 <template>
   <div>
     <TablePropertiesFilter
-      @search="setsearchQuery"
-      :properties="filteredData"
+      :properties="properties"
       :filterTypes="filterTypes"
+      @search="setsearchQuery"
+      @filter="setSelectedFilters"
     />
     <table class="w-full overflow-hidden border border-collapse rounded-md shadow table-auto">
       <thead class="bg-gray-50">
@@ -87,8 +88,8 @@ export default {
       { label: 'User', field: 'user' },
       { label: 'Type', field: 'type' },
       { label: 'Name', field: 'name' },
-      { label: 'Rented from', field: 'rentedFrom' },
-      { label: 'Rented to', field: 'rentedTo' },
+      { label: 'Rented from', field: 'rentedFromRedable' },
+      { label: 'Rented to', field: 'rentedToRedable' },
       { label: 'Rented for (months)', field: 'rentedDuration' },
       { label: '', field: 'status' },
     ],
@@ -101,6 +102,7 @@ export default {
     ],
     page: 1,
     searchQuery: '',
+    filters: {},
   }),
   computed: {
     paginatedData() {
@@ -108,6 +110,32 @@ export default {
     },
     filteredData() {
       return this.properties.filter((property) => {
+        // check that property matches all filters
+        const filterKeys = Object.keys(this.filters);
+
+        if (filterKeys.length > 0) {
+          const matches = filterKeys.every((key) => {
+            const filter = this.filters[key];
+
+            if (Array.isArray(filter)) {
+              return filter.includes(property[key]);
+            }
+
+            if ((key === 'rentedFrom' || key === 'rentedTo') && property[key] != null) {
+              const date = new Date(property[key]);
+              const filterDate = new Date(filter);
+
+              return date.getTime() === filterDate.getTime();
+            }
+
+            return property[key] === filter;
+          });
+
+          if (!matches) {
+            return false;
+          }
+        }
+
         if (this.searchQuery === '') {
           return true;
         }
@@ -150,6 +178,10 @@ export default {
       }
 
       this.searchQuery = query;
+    },
+    setSelectedFilters(filters) {
+      this.filters = { ...filters.checkbox, ...filters.date };
+      this.page = 1;
     },
   },
 };

@@ -33,15 +33,20 @@
               type="checkbox"
               :id="`filter-item-${title}-${index}`"
               class="w-4 h-4 border-gray-300 rounded-md"
+              @change="toggleCheckbox($event, item)"
             />
-            <label :for="`filter-item-${title}-${index}`" class="text-sm truncate">{{
-              item
-            }}</label>
+            <label :for="`filter-item-${title}-${index}`" class="text-sm truncate">
+              {{ item }}
+            </label>
           </li>
         </ul>
       </div>
       <div v-else-if="type === 'date'">
-        <input type="date" class="w-full px-2 py-1 border border-gray-300 rounded-md" />
+        <input
+          type="date"
+          class="w-full px-2 py-1 border border-gray-300 rounded-md"
+          @change="selectedDate"
+        />
       </div>
     </div>
   </div>
@@ -59,13 +64,55 @@ export default {
       type: String,
       required: true,
     },
+    field: {
+      type: String,
+      required: true,
+    },
     items: {
       type: Array,
-      required: true,
+      required: false,
     },
   },
   data: () => ({
-    openFilter: true,
+    openFilter: false,
   }),
+  methods: {
+    toggleCheckbox(event, item) {
+      const value = event.target.checked;
+
+      if (value) {
+        this.$emit('addedFilter', {
+          type: this.type,
+          field: this.field,
+          item,
+          value,
+        });
+      } else {
+        this.$emit('removedFilter', {
+          type: this.type,
+          field: this.field,
+          item,
+          value,
+        });
+      }
+    },
+    selectedDate(event) {
+      const value = event.target.valueAsDate;
+
+      if (value) {
+        this.$emit('addedFilter', {
+          type: this.type,
+          field: this.field,
+          value: value.setHours(0, 0, 0, 0),
+        });
+      } else {
+        this.$emit('removedFilter', {
+          type: this.type,
+          field: this.field,
+          value,
+        });
+      }
+    },
+  },
 };
 </script>

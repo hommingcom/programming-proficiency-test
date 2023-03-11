@@ -33,8 +33,8 @@ export default {
         ...property,
         user: this.userById[property.userId],
         type: this.propertyTypeById[property.typeId],
-        rentedFrom: this.readableDate(property.rentedFrom),
-        rentedTo: this.readableDate(property.rentedTo),
+        rentedFromRedable: this.readableDate(property.rentedFrom),
+        rentedToRedable: this.readableDate(property.rentedTo),
         rentedDuration: this.rentedDurationInMonth(property.rentedFrom, property.rentedTo),
         status: this.getStatus(property.rentedFrom, property.rentedTo),
       }));
