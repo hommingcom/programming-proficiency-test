@@ -1,6 +1,6 @@
 <template>
   <div>
-    <TablePropertiesFilter @search="searchQuery = $event" />
+    <TablePropertiesFilter @search="setsearchQuery" />
     <table class="w-full overflow-hidden border border-collapse rounded-md shadow table-auto">
       <thead class="bg-gray-50">
         <tr class="text-xs text-left text-gray-900 md:text-sm">
@@ -42,8 +42,8 @@
 
       <tbody class="bg-white">
         <tr
-          v-for="(property, index) in tableData"
-          :key="property.id + `test-${index}`"
+          v-for="property in paginatedData"
+          :key="property.id"
           class="text-xs font-medium text-gray-600 md:text-sm font-mediumtext-sm"
         >
           <td
@@ -92,8 +92,15 @@ export default {
     searchQuery: '',
   }),
   computed: {
-    tableData() {
-      const filtered = this.properties.filter((property) => {
+    paginatedData() {
+      return this.filteredData.slice((this.page - 1) * this.perPage, this.page * this.perPage);
+    },
+    filteredData() {
+      return this.properties.filter((property) => {
+        if (this.searchQuery === '') {
+          return true;
+        }
+
         const values = Object.values(property);
 
         return values.some((value) => {
@@ -102,19 +109,16 @@ export default {
           return stringValue.includes(this.searchQuery.toLowerCase());
         });
       });
-
-      return filtered.slice((this.page - 1) * this.perPage, this.page * this.perPage);
-      // return this.properties.slice((this.page - 1) * this.perPage, this.page * this.perPage);
     },
     getPageInformation() {
-      if (this.tableData.length === 0) {
+      if (this.filteredData.length === 0) {
         return 'No results found';
       }
 
       return `Page ${this.page} of ${this.totalPages}`;
     },
     totalPages() {
-      return Math.ceil(this.tableData.length / this.perPage);
+      return Math.ceil(this.filteredData.length / this.perPage);
     },
   },
   methods: {
@@ -127,6 +131,14 @@ export default {
       if (this.page < this.totalPages) {
         this.page += 1;
       }
+    },
+    setsearchQuery(query) {
+      // Reset page to 1 when search query changes
+      if (query !== '') {
+        this.page = 1;
+      }
+
+      this.searchQuery = query;
     },
   },
 };
