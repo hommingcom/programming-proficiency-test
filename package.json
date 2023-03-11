@@ -8,6 +8,9 @@
     "test:unit": "jest",
     "lint": "node_modules/.bin/vue-cli-service lint resources"
   },
+  "prettier": {
+    "singleQuote": true
+  },
   "dependencies": {
     "core-js": "^3.6.5",
     "vue": "^2.6.11"
@@ -19,11 +22,14 @@
     "@vue/cli-service": "^5.0.8",
     "@vue/eslint-config-airbnb": "^5.0.2",
     "@vue/test-utils": "^1.0.3",
+    "autoprefixer": "^9.8.8",
     "babel-eslint": "^10.1.0",
     "chokidar": "^3.5.2",
     "eslint": "^7.32.0",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-vue": "^9.9.0",
+    "postcss": "^7.0.39",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17",
     "vue-template-compiler": "^2.6.11"
   }
 }
