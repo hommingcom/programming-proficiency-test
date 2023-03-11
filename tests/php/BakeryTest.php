@@ -5,7 +5,7 @@ namespace UnitTestFiles\Test;
 use App\Bakery;
 use PHPUnit\Framework\TestCase;
 
-class BakeryTestTest extends TestCase
+class BakeryTest extends TestCase
 {
     function testApplePie()
     {
@@ -38,4 +38,17 @@ class BakeryTestTest extends TestCase
             ['flour' => 7900, 'lemon' => 1200, 'cream' => 5200, 'vanilla' => 100, 'sugar' => 4000]
         ));
     }
+
+    public function testCalculateOutput()
+    {
+        $recipe = ['flour' => 700, 'eggs' => 2, 'apples' => 4, 'sugar' => 1000];
+        $ingredients = ['flour' => 1400, 'eggs' => 3, 'apples' => 21, 'sugar' => 2500];
+
+        for ($i = 1; $i <= 1000000; $i++) {
+            $result = Bakery::calculateOutput($recipe, $ingredients);
+            $this->assertIsInt($result);
+            $this->assertGreaterThanOrEqual(0, $result);
+        }
+    }
+
 }

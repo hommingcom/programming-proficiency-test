@@ -15,9 +15,22 @@ class Bakery
     public static function calculateOutput(array $recipe, array $ingredients): int
     {
         $numberOfCakes = 0;
+        $maxCakes = INF;
 
-        // Complete the function
+        $availableIngredients = [];
 
-        return $numberOfCakes;
+        foreach ($ingredients as $ingredient => $amount) {
+            $availableIngredients[$ingredient] = $amount;
+        }
+
+        foreach ($recipe as $ingredient => $amount) {
+            if (!isset($availableIngredients[$ingredient]) || $availableIngredients[$ingredient] < $amount) {
+                $maxCakes = 0;
+                break;
+            }
+
+            $maxCakes = min($maxCakes, intdiv($availableIngredients[$ingredient], $amount));
+        }
+        return $maxCakes;
     }
 }
