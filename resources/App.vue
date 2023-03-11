@@ -46,7 +46,7 @@ export default {
       for (let i = 0; i < 1000; i += 1) {
         data.push({
           id: i + 9,
-          userId: Math.floor(Math.random() * 10) + 1,
+          userId: Math.floor(Math.random() * 3) + 1,
           typeId: Math.floor(Math.random() * 3) + 1,
           name: `Property ${i + 1}`,
           rentedFrom: new Date(
