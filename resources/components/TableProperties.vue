@@ -143,6 +143,11 @@ export default {
         const values = Object.values(property);
 
         return values.some((value) => {
+          // Don't search in dates
+          if (value instanceof Date) {
+            return false;
+          }
+
           // Allow searching for numbers
           const stringValue = String(value).toLowerCase();
           return stringValue.includes(this.searchQuery.toLowerCase());
