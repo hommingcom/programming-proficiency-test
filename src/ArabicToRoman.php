@@ -33,21 +33,19 @@ class ArabicToRoman
     public static function transform(int $arabicNumber): string
     {
 
-        if (isset(self::$cache[$arabicNumber])) {
-            return self::$cache[$arabicNumber];
-        }
+        if (!array_key_exists($arabicNumber, self::$cache)) {
+            $romanNumber = '';
 
-        $romanNumber = '';
-
-        foreach (self::$romanNumerals as $value => $numeral) {
-            while ($arabicNumber >= $value) {
-                $romanNumber .= $numeral;
-                $arabicNumber -= $value;
+            foreach (self::$romanNumerals as $value => $numeral) {
+                while ($arabicNumber >= $value) {
+                    $romanNumber .= $numeral;
+                    $arabicNumber -= $value;
+                }
             }
+
+            self::$cache[$arabicNumber] = $romanNumber;
         }
 
-        self::$cache[$arabicNumber] = $romanNumber;
-
-        return $romanNumber;
+        return self::$cache[$arabicNumber];
     }
 }
