@@ -14,10 +14,16 @@ class Bakery
      */
     public static function calculateOutput(array $recipe, array $ingredients): int
     {
-        $numberOfCakes = 0;
+        $numberOfCakes = [];
 
-        // Complete the function
+        foreach ($recipe as $ingredient => $quantity) {
+            if (isset($ingredients[$ingredient])) {
+                return 0;
+            }
 
-        return $numberOfCakes;
+            $numberOfCakes[$ingredient] = $ingredients[$ingredient] / $quantity;
+        }
+
+        return floor(min($numberOfCakes));
     }
 }
