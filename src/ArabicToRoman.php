@@ -13,10 +13,45 @@ class ArabicToRoman
      */
     public static function transform(int $arabicNumber): string
     {
-        $romanNumber = '';
+        $result = '';
 
-        // Complete the function
+        if ($arabicNumber <= 0 || $arabicNumber > 3999) {
+            return $result;
+        }
 
-        return $romanNumber;
+        $romanNumbersValue  = self::romanNumbersWithArabicValue();
+        $romanNumberFined   = array_key_exists($arabicNumber, $romanNumbersValue);
+
+        if ($romanNumberFined) {
+            return $romanNumbersValue[$arabicNumber];
+        }
+
+        foreach ($romanNumbersValue as $arabicValue => $romanNumber) {
+            while($arabicNumber >= $arabicValue) {
+                $result .= $romanNumber;
+                $arabicNumber -= $arabicValue;
+            }
+        }
+
+        return $result;
+    }
+
+    private static function romanNumbersWithArabicValue(): array
+    {
+        return [
+            1000 => 'M',
+            900  => 'CM',
+            500  => 'D',
+            400  => 'CD',
+            100  => 'C',
+            90   => 'XC',
+            50   => 'L',
+            40   => 'XL',
+            10   => 'X',
+            9    => 'IX',
+            5    => 'V',
+            4    => 'IV',
+            1    => 'I',
+        ];
     }
 }

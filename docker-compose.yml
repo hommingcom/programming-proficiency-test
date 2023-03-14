@@ -5,10 +5,12 @@ services:
   app:
     build:
       context: .
+    container_name: 'app'
     tty: true
     restart: unless-stopped
     working_dir: /programming-proficiency-test
     volumes:
-      - ${PWD}:/programming-proficiency-test
+      - ./:/programming-proficiency-test
     ports:
       - '8080:8080'
+      - '447:443'
