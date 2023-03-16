@@ -1,18 +1,18 @@
-<template>
-  <div id="app">
-    WORK HERE
-  </div>
-</template>
-
 <script>
-import { users, propertyTypes, properties } from '@/mocks/api';
+import Home from './views/Home.vue';
 
 export default {
   name: 'App',
   data: () => ({
-    users,
-    propertyTypes,
-    properties,
   }),
+  components: {
+    Home,
+  },
 };
 </script>
+
+<template>
+  <div id="app">
+    <Home />
+  </div>
+</template>

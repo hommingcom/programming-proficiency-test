@@ -10,5 +10,7 @@ services:
     working_dir: /programming-proficiency-test
     volumes:
       - ${PWD}:/programming-proficiency-test
+      # Need to add node_modules as a volume for vue-cli bin
+      - /programming-proficiency-test/node_modules
     ports:
       - '8080:8080'
