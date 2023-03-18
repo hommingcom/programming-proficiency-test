@@ -13,7 +13,7 @@ class Bakery
      * @return int The number of cakes you can bake
      */
     public static function calculateOutput(array $recipe, array $ingredients): int
-    {
+    { 
         // Set initial maximum number of cakes to the maximum possible number of cakes with the given ingredients
         $numberOfCakes = PHP_INT_MAX;
 
