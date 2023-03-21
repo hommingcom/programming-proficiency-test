@@ -16,7 +16,16 @@ class Bakery
     {
         $numberOfCakes = 0;
 
-        // Complete the function
+        foreach($recipe as $ingredient => $quantity) {
+            if (!isset($ingredients[$ingredient])) {
+                return 0; // If we don't have the ingredient, return 0
+            }
+            $numCakes = intdiv($ingredients[$ingredient], $quantity);
+            if ($numCakes === 0) {
+                return 0; // If we don't have enough of an ingredient, return 0
+            }
+            $numberOfCakes = min($numberOfCakes, $numCakes);
+        }
 
         return $numberOfCakes;
     }
