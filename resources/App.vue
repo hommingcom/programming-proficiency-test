@@ -1,14 +1,16 @@
 <template>
   <div id="app">
-    WORK HERE
+    <DataTable :properties="properties" :propertyTypes="propertyTypes" :users="users"/>
   </div>
 </template>
 
 <script>
 import { users, propertyTypes, properties } from '@/mocks/api';
+import DataTable from '@/components/Properties/DataTable.vue';
 
 export default {
-  name: 'App',
+  name: 'app',
+  components: { DataTable },
   data: () => ({
     users,
     propertyTypes,
