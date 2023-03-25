@@ -1,11 +1,11 @@
 <?php
 
-namespace UnitTestFiles\Test;
+namespace Tests;
 
 use App\Bakery;
 use PHPUnit\Framework\TestCase;
 
-class BakeryTestTest extends TestCase
+class BakeryTest extends TestCase
 {
     function testApplePie()
     {

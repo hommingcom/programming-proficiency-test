@@ -1,9 +1,8 @@
 {
     "name": "hommingcom/programming-proficiency-test",
     "type": "project",
-    "require": {},
     "require-dev": {
-        "phpunit/phpunit": "^10"
+        "phpunit/phpunit": "^10.0"
     },
     "autoload": {
         "psr-4": {

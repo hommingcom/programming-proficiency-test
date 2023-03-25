@@ -4,17 +4,6 @@ FROM php:8.2-alpine
 RUN echo "UTC" > /etc/timezone
 
 RUN apk add --no-cache \
-  libressl \
-  autoconf \
-  gcc \
-  g++ \
-  libtool \
-  make \
-  git \
-  zip \
-  unzip \
-  curl \
-  python3 \
   nodejs \
   npm
 

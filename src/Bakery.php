@@ -2,6 +2,8 @@
 
 namespace App;
 
+use Throwable;
+
 class Bakery
 {
     /**
@@ -15,8 +17,18 @@ class Bakery
     public static function calculateOutput(array $recipe, array $ingredients): int
     {
         $numberOfCakes = 0;
+        $units = [];
 
-        // Complete the function
+        try{
+            foreach($recipe as $ingredient => $ingredientUnit){
+                $ingredientUnitCount = $ingredients[$ingredient];
+                $units[] = intdiv($ingredientUnitCount, $ingredientUnit);
+            }
+        }catch(Throwable $ex){
+            return 0;
+        }
+
+        $numberOfCakes = min($units);
 
         return $numberOfCakes;
     }

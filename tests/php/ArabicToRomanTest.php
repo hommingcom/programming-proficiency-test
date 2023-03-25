@@ -1,6 +1,6 @@
 <?php
 
-namespace UnitTestFiles\Test;
+namespace Tests;
 
 use App\ArabicToRoman;
 use PHPUnit\Framework\TestCase;
