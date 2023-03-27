@@ -1,14 +1,19 @@
-version: '3.7'
+version: '3.8'
 services:
-
-  # PHP & NodeJS Service
   app:
     build:
       context: .
-    tty: true
-    restart: unless-stopped
-    working_dir: /programming-proficiency-test
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
     volumes:
       - ${PWD}:/programming-proficiency-test
-    ports:
-      - '8080:8080'
+    environment:
+      XDEBUG_MODE: "debug"
+      XDEBUG_CLIENT_HOST: "host.docker.internal"
+      XDEBUG_CLIENT_PORT: "9003"
+      WWWUSER: "${UID}"
+      WWWGROUP: "${GID}"
+    command: php -S 0.0.0.0:80 -t /programming-proficiency-test/
+
+
