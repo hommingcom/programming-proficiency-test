@@ -11,9 +11,13 @@ class ArabicToRoman
      *
      * @return string The roman number equivalent (e.g. CXXI)
      */
-    public static function transform(int $arabicNumber): string
+    public static function transform(int $arabicNumber): mixed
     {
         $romanNumber = '';
+
+        if ($arabicNumber <= 0) {
+            return null;
+        }
 
         $romanNumerals = array(
             'M' => 1000,
@@ -32,7 +36,7 @@ class ArabicToRoman
         );
         
         // Iterate through the Roman numerals in descending order of their value
-        foreach ($romanNumerals as $arabic => $roman) {
+        foreach ($romanNumerals as $roman => $arabic) {
             // if the input number is >= to the $arabicNumber,
             // subtract the $arabicNumber from the input number and add the corresponding Roman numeral to the $romanNumber
             while ($arabicNumber >= $arabic) {

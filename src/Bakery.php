@@ -20,7 +20,7 @@ class Bakery
         foreach ($recipe as $ingredient => $amountNeeded) {
             if (!isset($ingredients[$ingredient]) || $ingredients[$ingredient] < $amountNeeded) {
                 // If there is not enough ingredients return $numberOfCakes
-                break;
+                return 0;
             }
             
             // Calculate the number of cakes
