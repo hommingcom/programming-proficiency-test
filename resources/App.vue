@@ -1,46 +1,106 @@
 <template>
-  <div id="app">
-    WORK HERE
-    <select id="" v-model="selectedUser">
-      <option value="">Todos</option>
-      <option v-for="user in users" :key="user.id" :value="user.id">{{ user.name }}</option>
-    </select>
-    <select v-model="selectedType">
-      <option value="">Todos</option>
-      <option v-for="propType in propertyTypes" :key="propType.id" :value="propType.id">
-        {{ propType.name }}
-      </option>
-    </select>
-
-    <input type="date" v-model="rentedFrom">
-    <input type="date" v-model="rentedTo">
-    <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>User</th>
-        <th>Rented From</th>
-        <th>Rented To</th>
-        <th>Months Rented</th>
-        <th>Actually Rented</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr v-for="property in filteredProperties" :key="property.id">
-          <td>{{ property.name }}</td>
-          <td>{{ getPropertyType(property.typeId).name }}</td>
-          <td>{{ getUser(property.userId).name }}</td>
-          <td>{{ formatDate(property.rentedFrom) }}</td>
-          <td>{{ formatDate(property.rentedTo) }}</td>
-          <td>{{ getMonthsRented(property.rentedFrom, property.rentedTo) }}</td>
-          <td>{{ isPropertyRented(property.rentedFrom, property.rentedTo) }}</td>
-        </tr>
-      </tbody>
-  </table>
-  </div>
+  <div class="p-8" id="app">
+    <h1 class="text-center block mb-4 font-bold">PRUEBA HOMMING</h1>
+    <div class="flex flex-row mb-4">
+      <div class="w-1/4">
+        <label class="block mb-2 text-gray-700 font-bold" for="user-select">
+          User
+        </label>
+        <div class="relative">
+          <select class="w-3/4 block appearance-none bg-white border border-gray-400
+          hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight
+          focus:outline-none focus:shadow-outline" id="user-select" v-model="selectedUser">
+            <option value="">All</option>
+            <option v-for="user in users" :key="user.id" :value="user.id">{{user.name}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="w-1/4">
+        <label class="block mb-2 text-gray-700 font-bold" for="type-select">
+          Property Type
+        </label>
+        <div class="relative">
+          <select class="w-3/4 block appearance-none bg-white border border-gray-400
+            hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none
+            focus:shadow-outline" id="type-select" v-model="selectedType">
+            <option value="">All</option>
+            <option v-for="propType in propertyTypes" :key="propType.id" :value="propType.id">
+              {{propType.name}}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="w-1/4">
+        <label class="block mb-2 text-gray-700 font-bold" for="type-select">
+          Rented From
+        </label>
+        <input class="w-3/4 block appearance-none bg-white border border-gray-400
+          hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight
+          focus:outline-none focus:shadow-outline"
+        type="date" v-model="rentedFrom">
+      </div>
+      <div class="w-1/4">
+        <label class="block mb-2 text-gray-700 font-bold" for="type-select">
+          Rented From
+        </label>
+        <input class="w-3/4 block appearance-none bg-white border border-gray-400
+          hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight
+          focus:outline-none focus:shadow-outline"
+          type="date" v-model="rentedTo">
+      </div>
+    </div>
+    <div class="flex flex-col">
+      <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+          <div class="overflow-hidden">
+            <table class="min-w-full text-left text-sm font-light">
+              <thead
+                class="border-b text-white dark:border-neutral-500 font-medium bg-neutral-800">
+                <tr>
+                  <th scope="col" class="px-6 py-4 text-center">Name</th>
+                  <th scope="col" class="px-6 py-4 text-center">Type</th>
+                  <th scope="col" class="px-6 py-4 text-center">User</th>
+                  <th scope="col" class="px-6 py-4 text-center">Rented From</th>
+                  <th scope="col" class="px-6 py-4 text-center">Rented To</th>
+                  <th scope="col" class="px-6 py-4 text-center">Months Rented</th>
+                  <th scope="col" class="px-6 py-4 text-center">Actually Rented</th>
+                </tr>
+              </thead>
+              <tbody>
+                  <tr class="border-b dark:border-neutral-500"
+                    v-for="property in filteredProperties" :key="property.id">
+                    <td class="whitespace-nowrap text-center px-6 py-4">
+                      {{ property.name }}
+                    </td>
+                    <td class="whitespace-nowrap text-center px-6 py-4">
+                      {{ getPropertyType(property.typeId).name }}
+                    </td>
+                    <td class="whitespace-nowrap text-center px-6 py-4">
+                      {{ getUser(property.userId).name }}
+                    </td>
+                    <td class="whitespace-nowrap text-center px-6 py-4">
+                      {{ formatDate(property.rentedFrom) }}
+                    </td>
+                    <td class="whitespace-nowrap text-center px-6 py-4">
+                      {{ formatDate(property.rentedTo) }}
+                    </td>
+                    <td class="whitespace-nowrap text-center px-6 py-4">
+                      {{ getMonthsRented(property.rentedFrom, property.rentedTo) }}
+                    </td>
+                    <td class="whitespace-nowrap text-center px-6 py-4">
+                      {{ isPropertyRented(property.rentedFrom, property.rentedTo) }}
+                    </td>
+                  </tr>
+                </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
 </template>
 <script>
+import './assets/index.css';
 import { users, propertyTypes, properties } from '@/mocks/api';
 
 export default {
@@ -75,7 +135,6 @@ export default {
   },
   methods: {
     preparefilter() {
-      console.log('filter');
       const usr = Number(this.selectedUser);
       const rFrom = this.rentedFrom;
       const rTo = this.rentedTo;
@@ -85,26 +144,22 @@ export default {
     },
     filterProp(userId, rentedFrom, rentedTo, selectedType) {
       let returnProp = [];
-      console.log(rentedFrom);
-      console.log(rentedTo);
+
       if (!rentedTo) {
-        console.log('to');
         returnProp = properties.filter((property) => (!userId || property.userId === userId)
         && (!selectedType || property.typeId === selectedType)
         && (!rentedFrom || property.rentedFrom >= new Date(rentedFrom)));
       } else if (!rentedFrom) {
-        console.log('form');
         returnProp = properties.filter((property) => (!userId || property.userId === userId)
         && (!selectedType || property.typeId === selectedType)
         && (property.rentedTo !== null && property.rentedTo <= new Date(rentedTo)));
       } else {
-        console.log('else');
         returnProp = properties.filter((property) => (!userId || property.userId === userId)
         && (!selectedType || property.typeId === selectedType)
         && ((!rentedFrom || rentedTo) && property.rentedFrom <= new Date(rentedTo))
         && ((!rentedTo || rentedFrom) && property.rentedTo >= new Date(rentedFrom)));
       }
-      console.log(returnProp);
+
       return returnProp;
     },
     getPropertyType(typeId) {
