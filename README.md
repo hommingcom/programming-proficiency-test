@@ -1,39 +1,94 @@
-# HOMMING PROGRAMMING PROFICIENCY TEST (HPPT)
+#  🇬🇧 Programming Proficiency Test
 
-**WELCOME CHALLENGER** to the ~~HTTP~~ HPPT, we are going to test your proficiency as a programmer! ʕ ᓀ ᴥ ᓂ ʔ
+This project is a programming proficiency test that includes a simple API for converting Arabic numbers to Roman numerals and a Bakery Controller for calculating the number of cakes that can be made with a given recipe and available ingredients.
 
-> **DISCLAIMER:** Make the code to do what you want is only the first step, we expect elegant and optimal solutions since the problems are not challenging!
+## Getting Started
 
-## SETUP
+These instructions will help you get the project up and running on your local machine for development and testing purposes.
 
-You will find a dockerfile and a docker-compose.yml in your project root, that can only mean one thing... a dockerized project! So you may have guess the first step of this test already. Set it up and running!
+### Prerequisites
 
-> ⚠️ **WARNING** ⚠️ Remember your dependencies, don't expect your project to run without you libraries installed in the container, they wouldn't do the same to you.
+- Docker
+- Docker Compose
+- Git
 
-## PHP
+### Installation
 
-The backend part is more logic oriented, nothing pragmatic, unless you really like roman numbers for some reason...
+1. Clone the repository:
 
-You have a `src` folder with multiple files, each of them contains a function. You need to complete that function with the logic necessary to pass the tests. **You have complete control over the content of each function but not the parameters**. Take into consideration the optimization and DX of these exercises, imagine you have 1 million recipes, or that you have to parse an absurd amount of numbers and you will need to mantain that code often.
+```bash
+git clone https://github.com/joseantoniopino/programming-proficiency-test.git
+```
 
-You can check your logic running `docker compose exec app php vendor/bin/phpunit`.
+2. Change to the project directory:
 
-## JAVASCRIPT
+```bash
+cd programming-proficiency-test
+```
 
-This is a more pragmatic approach, this consists on a basic table CRUD, filtering and testing.
+3. Build and start the Docker container:
 
-Your workspace is `resources` and your tests live in `tests/js`, appart from that you can organize your files as you wish. You will start with an stub containing data and your objetive is:
+```bash
+chmod +x start.sh 
+```
 
- - Create a table which list the properties
- - Add extra columns to the properties table including months the property has been rented for and a boolean expresing if the property is currently being rented out
- - Be able to filter by property types, user and dates
- - (Optional) Listen to URL parameters to filter on page load. e.g. `?user=1`
- - (Optional) Install and use TailwindCSS to style your stuff properly.
+```bash
+./start.sh
+```
 
-You can check your work running `docker compose exec app npm run serve` and accessing your `localhost:8080`.
+The application will be available at http://localhost:8080.
 
-## HOW TO HAND IN YOUR WORK
+## Project Structure
 
-Please, fork this repository and submit a Pull Request with your solutions so we can check it out.
+The project follows a hexagonal architecture and includes the following main components:
 
-**BEST OF LUCK CHALLENGER.**
+- **Numbers**: A module for converting Arabic numbers to Roman numerals, which includes a Domain layer, an Application layer, and an Infrastructure layer.
+- **Bakery**: A module for calculating the number of cakes that can be made with a given recipe and available ingredients, which includes a Domain layer, an Application layer, and an Infrastructure layer.
+
+
+#  🇪🇸 Examen de habilidades de programación
+
+Este proyecto es un examen de habilidades de programación que incluye una API simple para convertir números arábigos a números romanos y un controlador de panadería para calcular la cantidad de pasteles que se pueden hacer con una receta dada y los ingredientes disponibles.
+
+## Comenzando
+
+Estas instrucciones le ayudarán a poner en marcha el proyecto en su máquina local para fines de desarrollo y pruebas.
+
+### Prerrequisitos
+
+- Docker
+- Docker Compose
+- Git
+
+### Instalación
+
+1. Clonar el repositorio:
+
+```bash
+git clone https://github.com/tuusuario/programming-proficiency-test.git
+```
+
+2. Cambiar al directorio del proyecto:
+
+```bash
+cd programming-proficiency-test
+```
+
+3. Construir e iniciar el contenedor Docker:
+
+```bash
+chmod +x start.sh 
+```
+
+```bash
+./start.sh
+```
+
+La aplicación estará disponible en http://localhost:8080.
+
+## Estructura del proyecto
+
+El proyecto sigue una arquitectura hexagonal e incluye los siguientes componentes principales:
+
+- **Numbers**: Un módulo para convertir números arábigos a números romanos, que incluye una capa de Dominio, una capa de Aplicación y una capa de Infraestructura.
+- **Bakery**: Un módulo para calcular la cantidad de pasteles que se pueden hacer con una receta dada y los ingredientes disponibles, que incluye una capa de Dominio, una capa de Aplicación y una capa de Infraestructura.
