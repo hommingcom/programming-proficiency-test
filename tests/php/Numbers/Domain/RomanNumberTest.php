@@ -2,8 +2,8 @@
 
 namespace Tests\Numbers\Domain;
 
-use App\Numbers\Domain\Entities\RomanNumber;
 use App\Numbers\Domain\Exceptions\DomainException;
+use App\Numbers\Domain\ValueObjects\RomanNumber;
 use PHPUnit\Framework\TestCase;
 
 class RomanNumberTest extends TestCase

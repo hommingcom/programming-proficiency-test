@@ -1,12 +1,10 @@
 <?php
 
-namespace App\Numbers\Domain\Entities;
+namespace App\Numbers\Domain\ValueObjects;
 
 use App\Numbers\Domain\Exceptions\DomainException;
-use App\Numbers\Domain\Interfaces\RomanNumberInterface;
 
-final readonly class RomanNumber implements RomanNumberInterface
-{
+final class RomanNumber {
 
     private const ROMAN_NUMERALS = [
         1000 => 'M',
@@ -24,13 +22,13 @@ final readonly class RomanNumber implements RomanNumberInterface
         1 => 'I',
     ];
 
-    public function __construct(private string $romanNumber)
+    public function __construct(private readonly string $romanNumber)
     {}
 
     /**
      * @throws DomainException
      */
-    public static function fromArabic(int $arabicNumber): RomanNumberInterface
+    public static function fromArabic(int $arabicNumber): RomanNumber
     {
         if ($arabicNumber < 1 || $arabicNumber > 3999) {
             throw new DomainException('The Arabic number must be between 1 and 3999');

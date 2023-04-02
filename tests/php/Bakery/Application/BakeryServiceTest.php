@@ -4,17 +4,11 @@ namespace Tests\Bakery\Application;
 
 
 use App\Bakery\Application\Services\BakeryService;
-use App\Bakery\Domain\DTO\RecipeDTO;
-use App\Bakery\Domain\Interfaces\RecipeRepositoryInterface;
 use App\Bakery\Infrastructure\Repositories\RecipeRepository;
-use PHPUnit\Framework\MockObject\Exception;
 use PHPUnit\Framework\TestCase;
 
 class BakeryServiceTest extends TestCase
 {
-    /**
-     * @throws Exception
-     */
     public function test_calculate_output()
     {
         $recipeName = 'cake';

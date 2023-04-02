@@ -3,13 +3,13 @@
 namespace Tests\Numbers\Application;
 
 use App\Numbers\Application\Exceptions\ApplicationException;
-use App\Numbers\Domain\Exceptions\DomainException;
-use App\Numbers\Application\Services\{RomanConverterService};
+use App\Numbers\Application\Interfaces\RomanConverterServiceInterface;
+use App\Numbers\Application\Services\RomanConverterService;
 use PHPUnit\Framework\TestCase;
 
 class RomanConverterServiceTest extends TestCase
 {
-    private RomanConverterService $romanConverterService;
+    private RomanConverterServiceInterface $romanConverterService;
 
     protected function setUp(): void
     {
@@ -17,7 +17,7 @@ class RomanConverterServiceTest extends TestCase
     }
 
     /**
-     * @throws DomainException
+     * @throws ApplicationException
      */
     public function test_convert_arabic_to_roman(): void
     {
@@ -29,9 +29,12 @@ class RomanConverterServiceTest extends TestCase
         $this->assertEquals($expectedResult, $result);
     }
 
+    /**
+     * @throws ApplicationException
+     */
     public function test_convert_arabic_to_roman_throws_exception(): void
     {
-        $this->expectException(DomainException::class);
+        $this->expectException(ApplicationException::class);
         $arabicNumber = -1;
 
         $this->romanConverterService->convertArabicToRoman($arabicNumber);
