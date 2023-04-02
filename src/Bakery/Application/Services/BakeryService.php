@@ -7,7 +7,7 @@ use App\Bakery\Domain\Entities\Recipe;
 use App\Bakery\Domain\Interfaces\RecipeRepositoryInterface;
 use App\Bakery\Domain\Services\BakeryDomainService;
 
-readonly class BakeryService
+final readonly class BakeryService
 {
     public function __construct(private RecipeRepositoryInterface $recipeRepository)
     {}

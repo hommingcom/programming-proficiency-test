@@ -4,7 +4,7 @@ namespace App\Bakery\Domain\Services;
 
 use App\Bakery\Domain\Entities\Recipe;
 
-class BakeryDomainService
+final class BakeryDomainService
 {
     public static function calculateOutput(Recipe $recipe, array $availableIngredients): int
     {

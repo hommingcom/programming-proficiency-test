@@ -6,6 +6,7 @@ namespace Tests\Bakery\Application;
 use App\Bakery\Application\Services\BakeryService;
 use App\Bakery\Domain\DTO\RecipeDTO;
 use App\Bakery\Domain\Interfaces\RecipeRepositoryInterface;
+use App\Bakery\Infrastructure\Repositories\RecipeRepository;
 use PHPUnit\Framework\MockObject\Exception;
 use PHPUnit\Framework\TestCase;
 
@@ -23,18 +24,7 @@ class BakeryServiceTest extends TestCase
             'eggs' => 9,
         ];
 
-        $recipeDTO = new RecipeDTO(
-            name: 'cake',
-            ingredients: [
-                'flour' => 500,
-                'sugar' => 200,
-                'eggs' => 3,
-            ]
-        );
-
-        $recipeRepository = $this->createMock(RecipeRepositoryInterface::class);
-        $recipeRepository->method('getRecipeByName')
-            ->willReturn($recipeDTO);
+        $recipeRepository = new RecipeRepository(); // In a real application this would go in a service container
 
         $bakeryService = new BakeryService($recipeRepository);
 

@@ -2,7 +2,7 @@
 
 namespace App\Bakery\Domain\DTO;
 
-class RecipeDTO
+final class RecipeDTO
 {
 
     public function __construct(

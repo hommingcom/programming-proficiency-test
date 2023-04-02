@@ -2,7 +2,7 @@
 
 namespace App\Bakery\Domain\Entities;
 
-readonly class Recipe
+final readonly class Recipe
 {
 
     public function __construct(
