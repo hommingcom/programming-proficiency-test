@@ -8,6 +8,5 @@ final class RecipeDTO
     public function __construct(
         public string $name,
         public array $ingredients
-    )
-    {}
+    ){}
 }

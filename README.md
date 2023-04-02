@@ -65,7 +65,7 @@ Estas instrucciones le ayudarán a poner en marcha el proyecto en su máquina lo
 1. Clonar el repositorio:
 
 ```bash
-git clone https://github.com/tuusuario/programming-proficiency-test.git
+git clone https://github.com/joseantoniopino/programming-proficiency-test.git
 ```
 
 2. Cambiar al directorio del proyecto:
