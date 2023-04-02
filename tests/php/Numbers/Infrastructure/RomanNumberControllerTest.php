@@ -4,9 +4,6 @@ namespace Tests\Numbers\Infrastructure;
 
 use App\Numbers\Application\Interfaces\RomanConverterServiceInterface;
 use App\Numbers\Infrastructure\Controllers\RomanNumberController;
-use DI\ContainerBuilder;
-use DI\DependencyException;
-use DI\NotFoundException;
 use PHPUnit\Framework\MockObject\Exception;
 use PHPUnit\Framework\TestCase;
 
