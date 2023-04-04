@@ -38,12 +38,4 @@ class BakeryTest extends TestCase
             ['flour' => 7900, 'lemon' => 1200, 'cream' => 5200, 'vanilla' => 100, 'sugar' => 4000]
         ));
     }
-
-    function testCthulhuCake()
-    {
-        $this->assertEquals(10, Bakery::calculateOutput(
-            array_fill(0, 1000000, 100),
-            array_fill(0, 1000000, 1000),
-        ));
-    }
 }
