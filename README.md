@@ -18,19 +18,14 @@ You have a `src` folder with multiple files, each of them contains a function. Y
 
 You can check your logic running `docker compose exec app php vendor/bin/phpunit`.
 
-## JAVASCRIPT
+## SOLUCIÓN RAFAEL DE LA ESCALERA
 
-This is a more pragmatic approach, this consists on a basic table CRUD, filtering and testing.
-
-Your workspace is `resources` and your tests live in `tests/js`, appart from that you can organize your files as you wish. You will start with an stub containing data and your objetive is:
-
- - Create a table which list the properties
- - Add extra columns to the properties table including months the property has been rented for and a boolean expresing if the property is currently being rented out
- - Be able to filter by property types, user and dates
- - (Optional) Listen to URL parameters to filter on page load. e.g. `?user=1`
- - (Optional) Install and use TailwindCSS to style your stuff properly.
-
-You can check your work running `docker compose exec app npm run serve` and accessing your `localhost:8080`.
+## Instrucciones de instalación y ejecutar los tests
+````shell
+$ docker-compose up -d --build
+$ docker exec -it programming-proficiency-test_app_1 composer install --no-scripts --no-interaction --optimize-autoloader
+$ docker exec -it programming-proficiency-test_app_1 php vendor/bin/phpunit
+````
 
 ## HOW TO HAND IN YOUR WORK
 

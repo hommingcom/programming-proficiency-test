@@ -14,10 +14,32 @@ class Bakery
      */
     public static function calculateOutput(array $recipe, array $ingredients): int
     {
-        $numberOfCakes = 0;
 
-        // Complete the function
+        $availableIngredients = array_keys($ingredients);
+        $requiredIngredients = array_keys($recipe);
 
-        return $numberOfCakes;
+        if(!self::hasRequiredIngredients($availableIngredients,$requiredIngredients)){
+            return 0;
+        }
+
+        $maxCakesPerIngredient = [];
+        foreach ($ingredients as $ingredient => $amount){
+            if(isset($recipe[$ingredient])){
+                $max = floor($amount/$recipe[$ingredient]);
+                $maxCakesPerIngredient[] = (int) $max;
+            }
+        }
+        return min($maxCakesPerIngredient);
+
+    }
+
+    private static function hasRequiredIngredients(array $availableIngredients, array $requiredIngredients ): bool
+    {
+        foreach ($requiredIngredients as $requiredIngredient){
+            if(!in_array($requiredIngredient,$availableIngredients)){
+                return false;
+            }
+        }
+        return true;
     }
 }
