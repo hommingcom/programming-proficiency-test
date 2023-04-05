@@ -14,9 +14,16 @@ class Bakery
      */
     public static function calculateOutput(array $recipe, array $ingredients): int
     {
-        $numberOfCakes = 0;
+        $numberOfCakes = PHP_INT_MAX;
 
-        // Complete the function
+        // Check if there are enough ingredients to make at least one cake
+        foreach ($recipe as $ingredient => $amountNeeded) {
+            if (!array_key_exists($ingredient, $ingredients) || $ingredients[$ingredient] < $amountNeeded) {
+                $numberOfCakes = 0;
+                break;
+            }
+            $numberOfCakes = min($numberOfCakes, intval($ingredients[$ingredient] / $amountNeeded));
+        }
 
         return $numberOfCakes;
     }
