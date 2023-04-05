@@ -16,6 +16,8 @@ class Bakery
     {
         $numberOfCakes = PHP_INT_MAX;
 
+        // Complete the function
+
         // Check if there are enough ingredients to make at least one cake
         foreach ($recipe as $ingredient => $amountNeeded) {
             if (!array_key_exists($ingredient, $ingredients) || $ingredients[$ingredient] < $amountNeeded) {
