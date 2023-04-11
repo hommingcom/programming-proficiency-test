@@ -1,12 +1,11 @@
 <template>
   <div id="app">
-    <h1 class="text-3xl font-bold underline">Hello world</h1>
+  <div class="btn-container">
     <input type="text" v-model="searchText">
-  <div>
     <button @click="handleFilter" >Filter</button>
   </div>
     <table class="striped centered">
-        <thead>
+        <thead class="table-head">
           <tr>
               <th>Properties</th>
               <th>Month Rented</th>
@@ -14,7 +13,7 @@
           </tr>
         </thead>
 
-        <tbody>
+        <tbody class="table-body">
           <!-- Primero un for para pasar por cada propiedad y tomar los datos correspondientes -->
           <tr v-for="property in filteredProperty" :key="property.id">
             <td>{{ property.name }}</td>
@@ -29,7 +28,7 @@
 <script>
 
 import dayjs from 'dayjs';
-import { users, propertyTypes, properties } from './mocks/apis.js';
+import { users, propertyTypes, properties } from '@/mocks/api';
 
 export default {
   name: 'App',
@@ -57,21 +56,27 @@ export default {
   methods: {
     getMonthsRented(property) {
       if (!property.rentedFrom) {
-        return 'not rented';
+        return 0;
       }
 
       const rentedFrom = new Date(property.rentedFrom);
       const rentedTo = property.rentedTo === null ? dayjs(new Date()) : dayjs(property.rentedTo);
-      const months = Math.round(rentedTo.diff(rentedFrom.toISOString(), 'month', true));
-      return months;
+      const months = rentedTo.diff(rentedFrom.toISOString(), 'month', true);
+      if (months > 0 && months < 1) {
+        return 'Less than a month';
+      }
+
+      const totalMonths = Math.floor(months);
+
+      return totalMonths;
     },
 
     getIsRented(property) {
       if (!property.rentedFrom || property.rentedTo) {
-        return 'Not Rented';
+        return 'False';
       }
 
-      return 'Rented';
+      return 'True';
     },
 
     handleFilter() {
@@ -79,8 +84,9 @@ export default {
       // conseguir los typeId si son iguales al string
       // retornar los userId y typeId que coinciden con los de properties
 
-      if (!this.searchText) {
-        this.filteredProperty = [...properties];
+      if (this.searchText === '' || this.searchText === null || this.searchText === undefined) {
+        this.filteredProperty = [...this.properties];
+        return;
       }
 
       const user = this.users.find((users) => users.name.toLowerCase().includes(this.searchText.toLowerCase()) || users.id === parseInt(this.searchText));
