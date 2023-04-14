@@ -4,7 +4,7 @@
 
     <table class="table-auto w-full">
       <thead class="bg-blue-500 text-white shadow-lg">
-        <th v-for="(col, index) in headers" :key="index" class="px-4 py-3">
+        <th v-for="col in headers" :key="col.key" class="px-4 py-3">
           {{ col.label }}
         </th>
       </thead>

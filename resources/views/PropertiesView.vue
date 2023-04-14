@@ -70,14 +70,12 @@
 
     </div>
 
-    <!-- <PropertiesTable :properties="filteredProperties"></PropertiesTable> -->
     <TableComponent :items="filteredProperties" :headers="headers"></TableComponent>
   </div>
 </template>
 
 <script>
 import { users, propertyTypes, properties } from '@/mocks/api';
-// import PropertiesTable from '../components/PropertiesTable.vue';
 import TableComponent from '../components/TableComponent.vue';
 import ButtonComponent from '../components/ButtonComponent.vue';
 import FormSelectComponent from '../components/FormSelectComponent.vue';
