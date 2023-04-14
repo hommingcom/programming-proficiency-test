@@ -7,25 +7,47 @@
     <div class=" flex items-center justify-center">
 
       <div class="w-1/5">
-        <label for="user" class="mr-2">Select User</label>
+        <FormSelectComponent
+          label="Select User"
+          :items="users"
+          v-model="filters.user"
+          @change="changeSelectedUser"
+        ></FormSelectComponent>
+
+        <!-- <label for="user" class="mr-2">Select User</label>
         <select name="users" id="users" v-model="filters.user"
           class="bg-blue-50 border rounded-md"
         >
           <option :value="null"></option>
           <option v-for="user in users" :key="user.id" :value="user.id">{{ user.name }}</option>
-        </select>
+        </select> -->
       </div>
 
       <div class="w-1/5">
-        <label for="user" class="mr-2">Select Type</label>
+        <FormSelectComponent
+          label="Select Type"
+          :items="propertyTypes"
+          v-model="filters.type"
+          @change="changeSelectedType"
+        >
+          <template v-slot:options>
+            <option v-for="propertyType in propertyTypes"
+              :key="propertyType.id" :value="propertyType.name"
+            >
+              {{ propertyType.name | capitalizeFirstLetter }}
+          </option>
+          </template>
+        </FormSelectComponent>
+
+        <!-- <label for="user" class="mr-2">Select Type</label>
         <select name="types" v-model="filters.type"
           class="bg-blue-50 border rounded-md"
         >
           <option :value="null"></option>
           <option v-for="propertyType in propertyTypes"
-          :key="propertyType.id" :value="propertyType.id">
-            {{ propertyType.name | capitalizeFirstLetter }}</option>
-        </select>
+          :key="propertyType.id" :value="propertyType.name">
+          {{ propertyType.name | capitalizeFirstLetter }}</option>
+        </select> -->
       </div>
 
       <div class="w-1/5">
@@ -44,23 +66,26 @@
         >
       </div>
 
-      <button class="rounded-full bg-blue-500 hover:bg-blue-700 my-2 py-2 px-4 text-white"
-        @click="clearFilters"
-      >
-        Clear Filters
-      </button>
+      <ButtonComponent text="Clear Filters" @clicked="clearFilters"></ButtonComponent>
+
     </div>
 
-    <PropertiesTable :properties="filteredProperties"></PropertiesTable>
+    <!-- <PropertiesTable :properties="filteredProperties"></PropertiesTable> -->
+    <TableComponent :items="filteredProperties" :headers="headers"></TableComponent>
   </div>
 </template>
 
 <script>
 import { users, propertyTypes, properties } from '@/mocks/api';
-import PropertiesTable from '../components/PropertiesTable.vue';
+// import PropertiesTable from '../components/PropertiesTable.vue';
+import TableComponent from '../components/TableComponent.vue';
+import ButtonComponent from '../components/ButtonComponent.vue';
+import FormSelectComponent from '../components/FormSelectComponent.vue';
 
 export default {
-  components: { PropertiesTable },
+  name: 'PropertiesView',
+  components: { TableComponent, ButtonComponent, FormSelectComponent },
+  props: ['user'],
   data: () => ({
     users,
     propertyTypes,
@@ -71,6 +96,16 @@ export default {
       rentedFrom: null,
       rentedTo: null,
     },
+    headers: [
+      { label: 'Id', key: 'id' },
+      { label: 'User', key: 'user' },
+      { label: 'Type', key: 'type' },
+      { label: 'Name', key: 'name' },
+      { label: 'Rented From', key: 'rentedFrom' },
+      { label: 'Rented To', key: 'rentedTo' },
+      { label: 'Months Rented', key: 'rentedMonths' },
+      { label: 'Currently Rented', key: 'currentlyRented' },
+    ],
   }),
   created() {
     this.checkQueryUser();
@@ -85,13 +120,20 @@ export default {
     filteredProperties() {
       return this.properties.filter(
         (property) => (!this.filters.user || property.userId === this.filters.user)
-        && (!this.filters.type || property.typeId === this.filters.type)
+        && (!this.filters.type || (property.type && property.type.toLowerCase()) === (this.filters.type && this.filters.type.toLowerCase())) // eslint-disable-line
         && (!this.filters.rentedFrom || property.rentedFrom >= new Date(this.filters.rentedFrom))
         && (!this.filters.rentedTo || property.rentedTo <= new Date(this.filters.rentedTo)),
       );
     },
   },
   methods: {
+    changeSelectedUser(user) {
+      this.filters.user = user;
+    },
+    changeSelectedType(type) {
+      // console.log('🚀 ~ file: PropertiesView.vue:127 ~ changeSelectedType ~ type:', type);
+      this.filters.type = type;
+    },
     checkQueryUser() {
       if (Object.prototype.hasOwnProperty.call(this.$route.query, 'user')) {
         const selectedUser = this.users.filter((user) => user.id === Number(this.$route.query.user)); // eslint-disable-line
@@ -109,10 +151,50 @@ export default {
     modifyPropertiesValues() {
       this.properties = this.properties.map((property) => ({
         ...property,
+        // typeId: this.getPropertyTypeName(property.typeId),
+        rentedFrom: this.formatDate(property.rentedFrom),
+        rentedTo: this.formatDate(property.rentedTo),
+        rentedMonths: this.calculateRentedMonths(property.rentedFrom, property.rentedTo),
+        currentlyRented: this.checkIfCurrentlyRented(property.rentedFrom, property.rentedTo),
         user: this.getUserName(property.userId),
-        type: this.getPropertyTypeName(property.typeId),
+        type: this.capitalizeFirstLetter(this.getPropertyTypeName(property.typeId)),
       }));
     },
+
+    capitalizeFirstLetter(text) {
+      return text && text.charAt(0).toUpperCase() + text.slice(1) // eslint-disable-line
+    },
+
+    formatDate(date) {
+      if (date) {
+        const options = {
+          timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+          timeZoneName: 'short',
+        };
+        return new Intl.DateTimeFormat(navigator.language,
+          options).format(date);
+      }
+      return null;
+    },
+
+    calculateRentedMonths(from, to) {
+      if (!from) return null;
+
+      const last = to !== null ? to : new Date();
+      let months = (last.getFullYear() - from.getFullYear()) * 12;
+      months -= from.getMonth();
+      months += last.getMonth();
+      return months <= 0 ? 0 : months;
+    },
+
+    checkIfCurrentlyRented(from, to) {
+      const today = new Date();
+      if (from && from <= today && (!to || to > today)) {
+        return 'Yes';
+      }
+      return 'No';
+    },
+
     clearFilters() {
       this.filters = Object.keys(this.filters).reduce(
         (acc, curr) => ({ ...acc, [curr]: null }), {},
