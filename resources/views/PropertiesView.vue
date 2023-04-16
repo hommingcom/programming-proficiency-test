@@ -4,23 +4,14 @@
       Properties
     </h1>
 
-    <div class=" flex items-center justify-center">
+    <div class="flex items-center justify-center">
 
       <div class="w-1/5">
         <FormSelectComponent
           label="Select User"
           :items="users"
           v-model="filters.user"
-          @change="changeSelectedUser"
         ></FormSelectComponent>
-
-        <!-- <label for="user" class="mr-2">Select User</label>
-        <select name="users" id="users" v-model="filters.user"
-          class="bg-blue-50 border rounded-md"
-        >
-          <option :value="null"></option>
-          <option v-for="user in users" :key="user.id" :value="user.id">{{ user.name }}</option>
-        </select> -->
       </div>
 
       <div class="w-1/5">
@@ -28,7 +19,6 @@
           label="Select Type"
           :items="propertyTypes"
           v-model="filters.type"
-          @change="changeSelectedType"
         >
           <template v-slot:options>
             <option v-for="propertyType in propertyTypes"
@@ -38,32 +28,33 @@
           </option>
           </template>
         </FormSelectComponent>
-
-        <!-- <label for="user" class="mr-2">Select Type</label>
-        <select name="types" v-model="filters.type"
-          class="bg-blue-50 border rounded-md"
-        >
-          <option :value="null"></option>
-          <option v-for="propertyType in propertyTypes"
-          :key="propertyType.id" :value="propertyType.name">
-          {{ propertyType.name | capitalizeFirstLetter }}</option>
-        </select> -->
       </div>
 
       <div class="w-1/5">
-        <label for="startDate" class="mr-2">Rented From:</label>
-        <input type="date" id="startDate" name="rentedFrom"
-          class="bg-blue-50 border rounded-md"
+        <FormInputComponent
+          label="Rented From:"
           v-model="filters.rentedFrom"
         >
+        </FormInputComponent>
+
+        <!-- <label for="startDate" class="mr-2">Rented From:</label>
+          <input type="date" id="startDate" name="rentedFrom"
+          class="bg-blue-50 border rounded-md"
+          v-model="filters.rentedFrom"
+          > -->
       </div>
 
       <div class="w-1/5">
-        <label for="endDate" class="mr-2">Rented To:</label>
+        <FormInputComponent
+          label="Rented To:"
+          v-model="filters.rentedTo"
+        >
+        </FormInputComponent>
+        <!-- <label for="endDate" class="mr-2">Rented To:</label>
         <input type="date" id="endDate" name="rentedTo"
           class="bg-blue-50 border rounded-md"
           v-model="filters.rentedTo"
-        >
+        > -->
       </div>
 
       <ButtonComponent text="Clear Filters" @clicked="clearFilters"></ButtonComponent>
@@ -79,10 +70,13 @@ import { users, propertyTypes, properties } from '@/mocks/api';
 import TableComponent from '../components/TableComponent.vue';
 import ButtonComponent from '../components/ButtonComponent.vue';
 import FormSelectComponent from '../components/FormSelectComponent.vue';
+import FormInputComponent from '../components/FormInputComponent.vue';
 
 export default {
   name: 'PropertiesView',
-  components: { TableComponent, ButtonComponent, FormSelectComponent },
+  components: {
+    TableComponent, ButtonComponent, FormSelectComponent, FormInputComponent,
+  },
   props: ['user'],
   data: () => ({
     users,
@@ -125,11 +119,7 @@ export default {
     },
   },
   methods: {
-    changeSelectedUser(user) {
-      this.filters.user = user;
-    },
     changeSelectedType(type) {
-      // console.log('🚀 ~ file: PropertiesView.vue:127 ~ changeSelectedType ~ type:', type);
       this.filters.type = type;
     },
     checkQueryUser() {

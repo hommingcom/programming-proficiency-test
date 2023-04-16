@@ -4,9 +4,10 @@
 
     <label for="items" class="mr-2">{{ label }}</label>
 
-    <select name="items" id="items" v-model="selectedValue"
+    <select name="items" :id="`items_${label}`"
       class="bg-blue-50 border rounded-md"
-      @change="$emit('change', selectedValue)"
+      @change="handleChange"
+      v-model="content"
     >
       <option :value="null"></option>
 
@@ -30,14 +31,19 @@ export default {
     optionValue: { type: String, required: false, default: 'id' },
     value: { type: [String, Number], required: false, default: null },
   },
-  data() {
-    return {
-      selectedValue: this.value,
-    };
-  },
   watch: {
     value() {
-      this.selectedValue = this.value;
+      this.content = this.value;
+    },
+  },
+  data() {
+    return {
+      content: this.value,
+    };
+  },
+  methods: {
+    handleChange() {
+      this.$emit('input', this.content);
     },
   },
 };
