@@ -102,13 +102,12 @@ export default {
       );
     },
   },
+  beforeRouteUpdate(to) {
+    const userId = to.params && to.params.user;
+    const selectedUser = this.users.filter((user) => user.id === Number(userId)); // eslint-disable-line
+    this.filters.user = selectedUser.length > 0 ? selectedUser[0].id : null;
+  },
   methods: {
-    checkQueryUser() {
-      if (Object.prototype.hasOwnProperty.call(this.$route.query, 'user')) {
-        const selectedUser = this.users.filter((user) => user.id === Number(this.$route.query.user)); // eslint-disable-line
-        this.filters.user = selectedUser.length > 0 ? selectedUser[0].id : null;
-      }
-    },
     getUserName(userId) {
       const userData = this.users.filter((user) => user.id === userId);
       return userData.length > 0 ? userData[0].name : null;
