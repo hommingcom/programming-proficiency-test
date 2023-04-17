@@ -32,9 +32,5 @@ export default {
     headers: { type: Array, required: true },
     items: { type: Array, required: true },
   },
-  data: () => ({
-  }),
-  methods: {
-  },
 };
 </script>

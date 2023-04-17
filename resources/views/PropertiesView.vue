@@ -36,12 +36,6 @@
           v-model="filters.rentedFrom"
         >
         </FormInputComponent>
-
-        <!-- <label for="startDate" class="mr-2">Rented From:</label>
-          <input type="date" id="startDate" name="rentedFrom"
-          class="bg-blue-50 border rounded-md"
-          v-model="filters.rentedFrom"
-          > -->
       </div>
 
       <div class="w-1/5">
@@ -50,11 +44,6 @@
           v-model="filters.rentedTo"
         >
         </FormInputComponent>
-        <!-- <label for="endDate" class="mr-2">Rented To:</label>
-        <input type="date" id="endDate" name="rentedTo"
-          class="bg-blue-50 border rounded-md"
-          v-model="filters.rentedTo"
-        > -->
       </div>
 
       <ButtonComponent text="Clear Filters" @clicked="clearFilters"></ButtonComponent>
@@ -119,9 +108,6 @@ export default {
     },
   },
   methods: {
-    changeSelectedType(type) {
-      this.filters.type = type;
-    },
     checkQueryUser() {
       if (Object.prototype.hasOwnProperty.call(this.$route.query, 'user')) {
         const selectedUser = this.users.filter((user) => user.id === Number(this.$route.query.user)); // eslint-disable-line
@@ -139,9 +125,6 @@ export default {
     modifyPropertiesValues() {
       this.properties = this.properties.map((property) => ({
         ...property,
-        // typeId: this.getPropertyTypeName(property.typeId),
-        rentedFrom: this.formatDate(property.rentedFrom),
-        rentedTo: this.formatDate(property.rentedTo),
         rentedMonths: this.calculateRentedMonths(property.rentedFrom, property.rentedTo),
         currentlyRented: this.checkIfCurrentlyRented(property.rentedFrom, property.rentedTo),
         user: this.getUserName(property.userId),
