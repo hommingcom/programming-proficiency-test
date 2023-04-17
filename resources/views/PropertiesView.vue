@@ -88,14 +88,9 @@ export default {
       { label: 'Currently Rented', key: 'currentlyRented' },
     ],
   }),
+
   created() {
-    this.checkQueryUser();
     this.modifyPropertiesValues();
-  },
-  watch: {
-    $route() {
-      this.checkQueryUser();
-    },
   },
   computed: {
     filteredProperties() {

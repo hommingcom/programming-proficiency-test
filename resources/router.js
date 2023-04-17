@@ -10,7 +10,8 @@ export default new Router({
       redirect: 'properties',
     },
     {
-      path: '/properties',
+      path: '/properties/:user?',
+      props: true,
       component: () => import('./views/PropertiesView.vue'),
     },
   ],
