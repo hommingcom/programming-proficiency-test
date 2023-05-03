@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <PropertyList/>
+    <PropertyList />
   </div>
 </template>
 
