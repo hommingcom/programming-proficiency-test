@@ -1,6 +1,19 @@
 <template>
   <div id="app">
-    WORK HERE
+    <table>
+      <thead>
+          <tr>
+              <th>Id</th>
+              <th>UserId</th>
+              <th>TypeId</th>
+              <th>Name</th>
+              <th>RentedFrom</th>
+              <th>RentedTo</th>
+              <th>Actions</th>
+          </tr>
+      </thead>
+    </table>
+
   </div>
 </template>
 
