@@ -1,24 +1,12 @@
 <template>
   <div id="app">
-    <table>
-      <thead>
-          <tr>
-              <th>Id</th>
-              <th>UserId</th>
-              <th>TypeId</th>
-              <th>Name</th>
-              <th>RentedFrom</th>
-              <th>RentedTo</th>
-              <th>Actions</th>
-          </tr>
-      </thead>
-    </table>
-
+    <PropertyList/>
   </div>
 </template>
 
 <script>
 import { users, propertyTypes, properties } from '@/mocks/api';
+import PropertyList from './TestBachir/components/PropertyList.vue';
 
 export default {
   name: 'App',
@@ -27,5 +15,8 @@ export default {
     propertyTypes,
     properties,
   }),
+  components: {
+    PropertyList,
+  },
 };
 </script>
