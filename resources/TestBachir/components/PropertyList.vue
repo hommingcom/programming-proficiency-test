@@ -35,29 +35,22 @@ export default {
     };
   },
   /* Una vez se crea la instancia de vue, el created me ejecutaría el código que tenga dentro */
-  async created() {
-    /* Hasta que no se resuelva el await, no va a continuar con la ejecucion del codigo */
-    const response = await fetch('@/mocks/api.js');
-    if (response.ok) {
-      /* Nos devuelve un objeto de tipo response */
-      const propiedadesData = await response.json();
-      /* Quiero que me vaya guardando cada objeto en el array */
-      this.propiedades = propiedadesData;
-      console.log(response);
-    } else {
-      alert(`Error Desconocido${response.status}`);
-    }
+  created() {
+    fetch('@/mocks/api.js')
+      .then((response) => response.json())
+      /* Guardo cada objeto en el array */
+      .then((data) => (this.propiedad = data));
   },
 };
 </script>
 
 <style>
-table{
+table {
   width: 90%;
   border: 1px solid black;
   margin: auto;
 }
-th{
+th {
   margin: 1rem;
   background-color: blueviolet;
 }
