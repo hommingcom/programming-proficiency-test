@@ -27,7 +27,6 @@ export const propertyTypes = [
     name: 'office',
   },
 ];
-
 export const properties = [
   {
     id: 1,
@@ -36,14 +35,18 @@ export const properties = [
     name: 'Penthouse - General Peron 32',
     rentedFrom: new Date(2020, 1, 22),
     rentedTo: new Date(2020, 7, 7),
+    rentalDuration: 0,
+    currentDate: new Date(),
   },
   {
     id: 2,
     userId: 2,
     typeId: 1,
     name: 'Flat - Castellana 201',
-    rentedFrom: null,
-    rentedTo: null,
+    rentedFrom: new Date(2023, 1, 1),
+    rentedTo: new Date(2023, 7, 1),
+    currentDate: new Date(),
+
   },
   {
     id: 3,
@@ -52,6 +55,8 @@ export const properties = [
     name: 'Parking - Nuevos Ministerios',
     rentedFrom: new Date(2020, 3, 9),
     rentedTo: new Date(2020, 4, 7),
+    currentDate: new Date(),
+
   },
   {
     id: 7,
@@ -59,7 +64,9 @@ export const properties = [
     typeId: 2,
     name: 'Parking - Gran Via 56',
     rentedFrom: new Date(2021, 4, 21),
-    rentedTo: null,
+    rentedTo: new Date(2023, 6, 1),
+    currentDate: new Date(),
+
   },
   {
     id: 4,
@@ -68,6 +75,8 @@ export const properties = [
     name: 'Office - Ibiza Metro',
     rentedFrom: new Date(2020, 5, 22),
     rentedTo: null,
+    currentDate: new Date(),
+
   },
   {
     id: 5,
@@ -76,6 +85,8 @@ export const properties = [
     name: 'Office - Plaza Castilla',
     rentedFrom: null,
     rentedTo: null,
+    currentDate: new Date(),
+
   },
   {
     id: 6,
@@ -84,5 +95,7 @@ export const properties = [
     name: 'Office - Puente Segovia',
     rentedFrom: new Date(2021, 2, 2),
     rentedTo: null,
+    currentDate: new Date(),
+
   },
 ];
