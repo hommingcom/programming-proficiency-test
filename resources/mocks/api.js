@@ -1,29 +1,29 @@
 export const users = [
   {
-    id: 1,
-    name: 'Asur Bernardo',
+    idUser: 1,
+    userName: 'Asur Bernardo',
   },
   {
-    id: 2,
-    name: 'David Gonzalez',
+    idUser: 2,
+    userName: 'David Gonzalez',
   },
   {
-    id: 3,
-    name: 'Javier Marti',
+    idUser: 3,
+    userName: 'Javier Marti',
   },
 ];
 
 export const propertyTypes = [
   {
-    id: 1,
+    idProTypes: 1,
     name: 'home',
   },
   {
-    id: 2,
+    idProTypes: 2,
     name: 'garage',
   },
   {
-    id: 3,
+    idProTypes: 3,
     name: 'office',
   },
 ];
@@ -32,7 +32,7 @@ export const properties = [
     id: 1,
     userId: 1,
     typeId: 1,
-    name: 'Penthouse - General Peron 32',
+    nameStreet: 'Penthouse - General Peron 32',
     rentedFrom: new Date(2020, 1, 22),
     rentedTo: new Date(2020, 7, 7),
     rentalDuration: 0,
@@ -42,7 +42,7 @@ export const properties = [
     id: 2,
     userId: 2,
     typeId: 1,
-    name: 'Flat - Castellana 201',
+    nameStreet: 'Flat - Castellana 201',
     rentedFrom: new Date(2023, 1, 1),
     rentedTo: new Date(2023, 7, 1),
     currentDate: new Date(),
@@ -52,7 +52,7 @@ export const properties = [
     id: 3,
     userId: 1,
     typeId: 2,
-    name: 'Parking - Nuevos Ministerios',
+    nameStreet: 'Parking - Nuevos Ministerios',
     rentedFrom: new Date(2020, 3, 9),
     rentedTo: new Date(2020, 4, 7),
     currentDate: new Date(),
@@ -62,7 +62,7 @@ export const properties = [
     id: 7,
     userId: 2,
     typeId: 2,
-    name: 'Parking - Gran Via 56',
+    nameStreet: 'Parking - Gran Via 56',
     rentedFrom: new Date(2021, 4, 21),
     rentedTo: new Date(2023, 6, 1),
     currentDate: new Date(),
@@ -72,9 +72,9 @@ export const properties = [
     id: 4,
     userId: 1,
     typeId: 3,
-    name: 'Office - Ibiza Metro',
+    nameStreet: 'Office - Ibiza Metro',
     rentedFrom: new Date(2020, 5, 22),
-    rentedTo: null,
+    rentedTo: new Date(2023, 5, 30),
     currentDate: new Date(),
 
   },
@@ -82,9 +82,9 @@ export const properties = [
     id: 5,
     userId: 1,
     typeId: 3,
-    name: 'Office - Plaza Castilla',
-    rentedFrom: null,
-    rentedTo: null,
+    nameStreet: 'Office - Plaza Castilla',
+    rentedFrom: new Date(2023, 2, 2),
+    rentedTo: new Date(2023, 4, 9),
     currentDate: new Date(),
 
   },
@@ -92,9 +92,9 @@ export const properties = [
     id: 6,
     userId: 2,
     typeId: 3,
-    name: 'Office - Puente Segovia',
+    nameStreet: 'Office - Puente Segovia',
     rentedFrom: new Date(2021, 2, 2),
-    rentedTo: null,
+    rentedTo: new Date(2022, 3, 3),
     currentDate: new Date(),
 
   },
