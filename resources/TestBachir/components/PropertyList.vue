@@ -186,7 +186,7 @@ export default {
             typeName: this.propertyTypes[index].name,
           };
         })
-        .filter((obj) => obj !== null); // Eliminamos los objetos null
+        .filter((obj) => obj !== null); // Delete the objects null
     },
   },
 };
