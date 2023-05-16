@@ -13,9 +13,6 @@
         crossorigin="anonymous"
       />
     </head>
-    <div>
-      <h4 class="p-2 mt-2 bg-info text-white">Listado de propiedades</h4>
-    </div>
     <button class="btn btn-primary m-2" @click="filterUsers">Filter by users</button>
     <button class="btn btn-success m-2" @click="filterProTypes">Filter by propertyTypes</button>
     <button class="btn btn-warning m-2" @click="filterProperties">Filter by properties</button>
