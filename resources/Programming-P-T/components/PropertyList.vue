@@ -13,66 +13,25 @@
         crossorigin="anonymous"
       />
     </head>
-    <button class="btn btn-primary m-2" @click="filterUsers">Filter by users</button>
-    <button class="btn btn-success m-2" @click="filterProTypes">Filter by propertyTypes</button>
-    <button class="btn btn-warning m-2" @click="filterProperties">Filter by properties</button>
-    <label class="float-right m-2" for="search">Search: </label>
-    <input v-model="filters" type="text" />
     <table class="table table-bordered table-light text-align border-primary">
       <thead>
         <tr>
-          <th>Id</th>
           <th>UserId</th>
-          <th>TypeId</th>
           <th>Name</th>
           <th>RentedFrom</th>
           <th>RentedTo</th>
           <th>RentalDuration</th>
           <th>ForRent</th>
-          <th>UserId</th>
-          <th>UserName</th>
-          <th>PropertyId</th>
-          <th>PropertyName</th>
-          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="combinedObject in combinedObjects" :key="combinedObject.id">
           <td>{{ combinedObject.id }}</td>
-          <td>{{ combinedObject.userId }}</td>
-          <td>{{ combinedObject.typeId }}</td>
           <td>{{ combinedObject.name }}</td>
           <td>{{ combinedObject.rentedFrom }}</td>
           <td>{{ combinedObject.rentedTo }}</td>
           <td>{{ rentalDuration(combinedObject) }} Ms</td>
           <td>{{ forRent(combinedObject) }}</td>
-          <td>{{ combinedObject.userId1 }}</td>
-          <td>{{ combinedObject.userName }}</td>
-          <td>{{ combinedObject.typeId1 }}</td>
-          <td>{{ combinedObject.typeName }}</td>
-          <td>
-            <div class="btn-group" role="group">
-              <button
-                class="btn btn-secondary"
-                title="Edit"
-                @click="
-                  btnEdit(
-                    combinedObject.id,
-                    combinedObject.userId,
-                    combinedObject.typeId,
-                    combinedObject.name,
-                    combinedObject.rentedFrom,
-                    combinedObject.rentedTo,
-                  )
-                "
-              >
-                <i class="fas fa-pencil-alt"></i>
-              </button>
-              <button class="btn btn-danger" title="delete" @click="btnDelete(combinedObject.id)">
-                <i class="fas fa-trash-alt"></i>
-              </button>
-            </div>
-          </td>
         </tr>
       </tbody>
     </table>
@@ -97,7 +56,7 @@ export default {
       copyUsers: [],
       propertyTypes: [],
       copyPropertyTypes: [],
-      filters: '',
+      inputValue: '',
       user: {},
     };
   },
@@ -136,7 +95,7 @@ export default {
     filterUsers() {
       // Cada vez que llamamos a la funcion, reseteamos el array
       this.users = this.copyUsers;
-      this.users = this.users.filter((combinedObject) => combinedObject.id > this.filters);
+      this.users = this.users.filter((combinedObject) => combinedObject.id > this.inputValue);
     },
     filterProTypes() {
       this.propertyTypes = this.copyPropertyTypes;
@@ -185,8 +144,8 @@ export default {
             typeId1: this.propertyTypes[index].id,
             typeName: this.propertyTypes[index].name,
           };
-        })
-        .filter((obj) => obj !== null); // Delete the objects null
+        });
+      // .filter((obj) => obj !== null); // Delete the objects null
     },
   },
 };
