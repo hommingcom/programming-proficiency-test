@@ -1,19 +1,21 @@
 <template>
-  <div id="app">
-  <div class="btn-container">
-    <input type="text" v-model="searchText">
-    <button @click="handleFilter" >Filter</button>
+  <div class="w-full h-screen flex justify-center items-center rounded-lg" id="app">
+  <div class="btn-container w-full flex relative mb-4">
+    <input class="w-full h-14 mr-2 text-base rounded-lg border border-slate-200 border-solid p-4 bg-white" type="text" v-model="searchText" placeholder="Search">
+    <button class="w-8 h-8 absolute top-2.5 right-5 text-base rounded-md border-none text-white cursor-pointer" @click="handleFilter" >
+      <font-awesome-icon :icon="faSearch" />
+    </button>
   </div>
-    <table class="striped centered">
-        <thead class="table-head">
-          <tr>
+    <table class="w-full striped centered">
+        <thead class="text-center table-head">
+          <tr class="tableTitle">
               <th>Properties</th>
-              <th>Month Rented</th>
+              <th>Months Rented</th>
               <th>Currently</th>
           </tr>
         </thead>
 
-        <tbody class="table-body">
+        <tbody class="text-center table-body">
           <!-- Primero un for para pasar por cada propiedad y tomar los datos correspondientes -->
           <tr v-for="property in filteredProperty" :key="property.id">
             <td>{{ property.name }}</td>
@@ -29,17 +31,35 @@
 
 import dayjs from 'dayjs';
 import { users, propertyTypes, properties } from '@/mocks/api';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+
+library.add(faSearch);
+
+// css externo de tailwind css
+const link = document.createElement('link');
+link.href = './dist/output.css';
+document.head.appendChild(link);
 
 export default {
   name: 'App',
+
+  components: {
+    FontAwesomeIcon,
+  },
 
   mounted() {
     this.$nextTick(function () {
       const urlParams = new URLSearchParams(window.location.search);
       const getUser = urlParams.get('user');
+      const getType = urlParams.get('type');
 
-      if (getUser) {
+      if (getUser !== null) {
         this.searchText = getUser;
+        this.handleFilter();
+      } else if (getType !== null) {
+        this.searchText = getType;
         this.handleFilter();
       }
     });
@@ -51,6 +71,7 @@ export default {
     properties,
     searchText: '',
     filteredProperty: [...properties],
+    faSearch,
   }),
 
   methods: {
@@ -83,24 +104,33 @@ export default {
       // conseguir los userId si son iguales al string
       // conseguir los typeId si son iguales al string
       // retornar los userId y typeId que coinciden con los de properties
+      // volver a minusculas y quitar espacios en el searchbar para evitar errores
 
-      if (this.searchText === '' || this.searchText === null || this.searchText === undefined) {
+      const searchedData = this.searchText.trim().toLowerCase();
+
+      if (!searchedData) {
         this.filteredProperty = [...this.properties];
         return;
       }
 
-      const user = this.users.find((users) => users.name.toLowerCase().includes(this.searchText.toLowerCase()) || users.id === parseInt(this.searchText));
+      const filteredProperties = this.properties.filter((property) => {
+        const user = this.users.find((user) => user.id === property.userId);
+        const type = this.propertyTypes.find((type) => type.id === property.typeId);
 
-      const type = this.propertyTypes.find((propertyTypes) => propertyTypes.name.toLowerCase().includes(this.searchText.toLowerCase()));
+        if (user && (user.name.toLowerCase().includes(searchedData) || user.id.toString() === searchedData)) {
+          return true;
+        }
 
-      if (user) {
-        this.filteredProperty = this.properties.filter((property) => property.userId === user.id);
-      }
+        if (type && type.name.toLowerCase().includes(searchedData)) {
+          return true;
+        }
 
-      if (type) {
-        this.filteredProperty = this.properties.filter((property) => property.typeId === type.id);
-      }
+        return false;
+      });
+
+      this.filteredProperty = filteredProperties;
     },
+
   },
 
 };
