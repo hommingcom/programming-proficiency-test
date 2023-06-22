@@ -96,7 +96,6 @@ body {
 
 .btn-container button:hover,
 .table-body tr:hover  {
-    scale: 1.01;
     background-color: #8AEABF;
 }
 
