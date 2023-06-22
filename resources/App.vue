@@ -1,13 +1,18 @@
 <template>
-  <div class="w-full h-screen flex justify-center items-center rounded-lg" id="app">
-  <div class="btn-container w-full flex relative mb-4">
-    <input class="w-full h-14 mr-2 text-base rounded-lg border border-slate-200 border-solid p-4 bg-white" type="text" v-model="searchText" placeholder="Search">
-    <button class="w-8 h-8 absolute top-2.5 right-5 text-base rounded-md border-none text-white cursor-pointer" @click="handleFilter" >
-      <font-awesome-icon :icon="faSearch" />
+  <div id="app">
+  <section class="inputOptionsSection">
+    <div class=" btn-container">
+      <input type="text" v-model="searchText" placeholder="Search">
+      <button class="buttonBase btn_search" @click="handleFilter" >
+        <font-awesome-icon :icon="faSearch" />
+      </button>
+    </div>
+    <button class="buttonBase btn_clear" @click="handleClear" >
+      Clear
     </button>
-  </div>
-    <table class="w-full striped centered">
-        <thead class="text-center table-head">
+  </section>
+    <table class="striped centered">
+        <thead class="table-head">
           <tr class="tableTitle">
               <th>Properties</th>
               <th>Months Rented</th>
@@ -15,7 +20,7 @@
           </tr>
         </thead>
 
-        <tbody class="text-center table-body">
+        <tbody class="table-body">
           <!-- Primero un for para pasar por cada propiedad y tomar los datos correspondientes -->
           <tr v-for="property in filteredProperty" :key="property.id">
             <td>{{ property.name }}</td>
@@ -36,11 +41,6 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 library.add(faSearch);
-
-// css externo de tailwind css
-const link = document.createElement('link');
-link.href = './dist/output.css';
-document.head.appendChild(link);
 
 export default {
   name: 'App',
@@ -98,6 +98,11 @@ export default {
       }
 
       return 'True';
+    },
+
+    handleClear() {
+      this.filteredProperty = [...this.properties];
+      this.searchText = '';
     },
 
     handleFilter() {
