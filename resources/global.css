@@ -63,6 +63,10 @@ body {
     background-color: white;
 }
 
+.btn-container input:focus {
+    outline: #8AEABF;
+}
+
 .buttonBase {
     background-color: #E3FBEE;
     -webkit-transition: all 0.7s;

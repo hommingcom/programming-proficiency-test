@@ -103,6 +103,9 @@ export default {
     handleClear() {
       this.filteredProperty = [...this.properties];
       this.searchText = '';
+      const url = new URL(window.location.href);
+      url.search = '';
+      window.history.pushState({}, '', url.toString());
     },
 
     handleFilter() {
@@ -115,6 +118,10 @@ export default {
 
       if (!searchedData) {
         this.filteredProperty = [...this.properties];
+        this.searchText = '';
+        const url = new URL(window.location.href);
+        url.search = '';
+        window.history.pushState({}, '', url.toString());
         return;
       }
 
