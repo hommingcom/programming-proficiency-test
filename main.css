@@ -1,0 +1,162 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
+
+html, body {
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+    margin: 0px;
+}
+
+#app {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    align-content: stretch;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    flex-direction: column;
+}
+
+.header-container {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    width: 100%;
+    height: auto;
+    overflow: auto;
+    flex-direction: row;
+    background-color: #a4efcd;
+}
+
+#logo {
+    width: 100px;
+    height: 70px;
+    margin: 5px;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    width: 100%;
+    height: 100px;
+    overflow: auto;
+    flex-direction: row;
+    background-color: #ebebeb;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer-container span {
+    width: auto;
+    height: auto;
+    margin: 5px;
+    color: #9d9d9d;
+}
+
+#content {
+    width: 65%;
+    margin: 50px;
+}
+
+.filter {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: baseline;
+    align-content: stretch;
+    width: 100%;
+    height: auto;
+    overflow: auto;
+    flex-direction: column;
+}
+
+.filter label {
+    width: 100%;
+    height: auto;
+    margin: 10px 0px;
+}
+
+.filter-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: flex-start;
+    width: 100%;
+    height: auto;
+    overflow: auto;
+    flex-direction: row;
+}
+
+.filter-container .filter-item {
+    width: 48%;
+    margin: 1%;
+    height: auto;
+}
+
+.filter-container .filter-item.datepicker {
+    width: 98%;
+    margin: 1%;
+}
+
+select {
+    display: inline-block;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 320px;
+    height: 34px;
+    padding: 6px 30px;
+    padding-left: 10px;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #555;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+}
+
+button.form-button {
+    font-family: roboto,Sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 18.75px;
+    fill: #3c3c3b;
+    color: #3c3c3b;
+    background-color: #8aeabf !important;
+    border-radius: 5px 5px 5px 5px;
+    padding: 16px 24px;
+    margin: 1%;
+    flex: auto;
+}
+button.form-button:hover {
+    background-color: #45ffac !important;
+}
+
+table {
+    width: 98%;
+    margin: 1%;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 0px 5px;
+}
+
+td.table-center {
+    text-align: center;
+}
