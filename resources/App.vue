@@ -1,18 +1,19 @@
 <template>
   <div id="app">
-    WORK HERE
+    <Header msg="Homming's Properties"/>
+    <Main />
   </div>
 </template>
 
 <script>
-import { users, propertyTypes, properties } from '@/mocks/api';
+import Header from "./components/Header.vue"
+import Main from "./components/Main.vue"
 
 export default {
   name: 'App',
-  data: () => ({
-    users,
-    propertyTypes,
-    properties,
-  }),
+  components: {
+    Header,
+    Main
+  },
 };
 </script>
