@@ -5,6 +5,7 @@ services:
   app:
     build:
       context: .
+      dockerfile: Dockerfile
     tty: true
     restart: unless-stopped
     working_dir: /programming-proficiency-test
