@@ -7,6 +7,7 @@ use PHPUnit\Framework\TestCase;
 
 class BakeryTest extends TestCase
 {
+    //todos estos son los test que me brindaron 
     function testApplePie()
     {
         $this->assertEquals(1, Bakery::calculateOutput(
@@ -45,5 +46,28 @@ class BakeryTest extends TestCase
             array_fill(0, 1000000, 100),
             array_fill(0, 1000000, 1000),
         ));
+    }
+
+    //este test lo agregue yo para probar que pasa si hubiera más cantidad de pruebas aleatorias.
+    function testPlus()
+    {
+        for ($i = 0; $i < 332; $i++) {
+            $recipe = [
+                'ingredient1' => rand(100, 3000),
+                'ingredient2' => rand(50, 500),
+                'ingredient3' => rand(20, 30),
+            ];
+
+            $ingredients = [
+                'ingredient1' => rand(500, 4000),
+                'ingredient2' => rand(400, 850),
+                'ingredient3' => rand(0, 0),
+            ];
+
+            $output = Bakery::calculateOutput($recipe, $ingredients);
+
+            $this->assertGreaterThanOrEqual(0, $output);
+            $this->assertIsInt($output);
+        }
     }
 }
