@@ -14,10 +14,16 @@ class Bakery
      */
     public static function calculateOutput(array $recipe, array $ingredients): int
     {
-        $numberOfCakes = 0;
+        $numberOfCakes = PHP_INT_MAX;
 
-        // Complete the function
-
+        foreach ($recipe as $ingredient => $requiredAmount) {
+            if (!isset($ingredients[$ingredient]) || $ingredients[$ingredient] < $requiredAmount) {
+                return 0;
+            }
+    
+            $numberOfCakes = min($numberOfCakes, (int)($ingredients[$ingredient] / $requiredAmount));
+        }
+    
         return $numberOfCakes;
     }
 }
