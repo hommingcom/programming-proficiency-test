@@ -24,15 +24,7 @@ class Bakery
             $QuantityAvailable = $ingredients[$ingredient] ?? 0;
 
             //me fijo si la cantidad necesaria es menor o = a 0, o si las cantidades disponibles son menores a 0 
-            if ($amountNecessary <= 0 || $QuantityAvailable < 0) {
-
-            //en ese caso retorno un 0 y avíso que no alcanza para preparar la receta
-            echo "No se pueden hacer pasteles con esa cantidad de ingredientes." . PHP_EOL;
-                return 0;
-            }
-
-            //si la cantidad disponible no es 0 la divido por la necesaria y redondeo para abajo el resultado, para sacar la cantidad max de pasteles que se pueden hacer
-            if ($QuantityAvailable !== 0) {
+            if ($amountNecessary < $QuantityAvailable) {
                 $maxCakes = floor($QuantityAvailable / $amountNecessary);
                 $numberOfCakes = min($numberOfCakes, $maxCakes);
             } else {

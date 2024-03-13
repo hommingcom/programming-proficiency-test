@@ -96,25 +96,19 @@ export default {
     };
   },
   computed: {
-    //filtro propiedades
     filteredProperties() {
-      //defino la variable que va a contener los filtros
       let filtered = this.properties;
-      //filtro de tipo de propiedad
       if (this.selectedPropertyType) {
         filtered = filtered.filter((property) => property.typeId === this.selectedPropertyType);
       }
-      //filtro de usuario
       if (this.selectedUser) {
         filtered = filtered.filter((property) => property.userId === this.selectedUser);
       }
-      //filtro de fecha
       if (this.selectedDate) {
         const selectedDate = new Date(this.selectedDate);
         selectedDate.setUTCHours(0, 0, 0, 0);
         filtered = filtered.filter((property) => {
           const rentedFromDate = new Date(property.rentedFrom);
-          //tuve que definir las horas, segundo, minutos y milisegundos porque sino no filtraba la fecha
           rentedFromDate.setUTCHours(0, 0, 0, 0);
           const rentedToDate = new Date(property.rentedTo);
           rentedToDate.setUTCHours(0, 0, 0, 0);
@@ -128,20 +122,16 @@ export default {
     },
   },
   methods: {
-    //obtener usuario por el id
     getUserById(userId) {
       return this.users.find((user) => user.id === userId);
     },
-    //obtener el tip de propiedad por el id
     getPropertyTypeById(typeId) {
       return this.propertyTypes.find((type) => type.id === typeId);
     },
-    //obtener la fecha
     formatDate(date) {
       const options = { year: 'numeric', month: 'numeric', day: 'numeric' };
       return new Date(date).toLocaleDateString(undefined, options);
     },
-    //calcular cantidad de meses
     calculateMonthsRented(property) {
       const rentedFrom = new Date(property.rentedFrom);
       const rentedTo = new Date(property.rentedTo);
@@ -153,14 +143,12 @@ export default {
 
       return isSameMonth ? monthsDiff : monthsDiff - 1;
     },
-    //esta rentado?
     isCurrentlyRented(property) {
       const currentDate = new Date();
       const rentedFrom = new Date(property.rentedFrom);
       const rentedTo = new Date(property.rentedTo);
       return currentDate >= rentedFrom && currentDate <= rentedTo;
     },
-    //cambiar url
     updateUrl() {
       const params = new URLSearchParams();
       if (this.selectedPropertyType) {

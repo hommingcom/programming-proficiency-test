@@ -61,7 +61,7 @@ class BakeryTest extends TestCase
             $ingredients = [
                 'ingredient1' => rand(500, 4000),
                 'ingredient2' => rand(400, 850),
-                'ingredient3' => rand(0, 0),
+                'ingredient3' => rand(0),
             ];
 
             $output = Bakery::calculateOutput($recipe, $ingredients);
@@ -70,4 +70,5 @@ class BakeryTest extends TestCase
             $this->assertIsInt($output);
         }
     }
+    
 }

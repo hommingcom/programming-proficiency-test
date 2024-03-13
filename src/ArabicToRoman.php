@@ -42,18 +42,15 @@ class ArabicToRoman
 
         //hago un foreach que recorra cada valor de ese array
         foreach ($rels as $rel => $value) {
-
-   // Mientras el número arabe que te pasan, sea mayor o igual a valor del actual de relación 
-
-            while ($arabicNumber >= $value) {
-                //agrego el simbolo romano al resultado
-                //ejemplo 130, 100=C  y 30 = XXX
-                $romanNumber .= $rel;
-                //le resto su valor del número, para continuar convirtiendo el siguiente
-                //130 = C30
-                // y luego CXXX
-                $arabicNumber -= $value;
-            }
+        //en la variable time almaceno el resultado de la división del n° arabigo por el value
+        //con el floor redondeo para abajo para que me de un número entero 
+        $time = floor($arabicNumber / $value);
+        //utilizo la fn de php str_repeat para para repetir el número romano que va a estar 
+        //relacionado con dicho n° arabigo, la cantidad de veces que dio como resultado el time
+        $romanNumber .= str_repeat($rel, $time);
+        //convierto el número arabigo al resto de la división con el value , y luego el foreach lo vuelve a recorrer hasta que ya no hay más n° por convertir
+        $arabicNumber %= $value;
+        
         }
 //retorno el resultado
         return $romanNumber;
