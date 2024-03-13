@@ -7,6 +7,7 @@ use PHPUnit\Framework\TestCase;
 
 class ArabicToRomanTest extends TestCase
 {
+     //todos estos son los test que me brindaron 
     function testNegative()
     {
         $this->assertEquals(null, ArabicToRoman::transform(-10));
@@ -61,4 +62,35 @@ class ArabicToRomanTest extends TestCase
     {
         $this->assertEquals('MMMCMXCIX', ArabicToRoman::transform(3999));
     }
+      //este test lo agregue yo para probar que pasa si hubiera más cantidad de pruebas aleatorias.
+      function testPlus()
+    {
+        for ($i = 0; $i < 500; $i++) {
+            $randomNumber = rand(1, 3999);
+            $romanNumber = ArabicToRoman::transform($randomNumber);
+
+      $this->assertNotNull($romanNumber);
+      $this->assertTrue($this->isValidRomanNumber($romanNumber));
+  }
+}
+
+private function isValidRomanNumber($romanNumber)
+{
+  return !empty($romanNumber);
+}
+//agrego algunos test para saber si el resultado que arroja es el correcto
+function test2555()
+{
+    $this->assertEquals('MMDLV', ArabicToRoman::transform(2555));
+}
+
+function test282()
+{
+    $this->assertEquals('CCLXXXII', ArabicToRoman::transform(282));
+}
+
+function test593()
+{
+    $this->assertEquals('DXCIII', ArabicToRoman::transform(593));
+}
 }

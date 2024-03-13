@@ -14,10 +14,27 @@ class Bakery
      */
     public static function calculateOutput(array $recipe, array $ingredients): int
     {
-        $numberOfCakes = 0;
+        //Se le asigna el valor max disponible
+        $numberOfCakes = PHP_INT_MAX;
 
-        // Complete the function
+        //con el foreach recorro cada elemento necesario de las recetas
+        foreach ($recipe as $ingredient => $amountNecessary) {
 
-        return $numberOfCakes;
+            //obtengo la cantidad de igrediente actual, y si no hay ingrediente disponible le asigno 0 como cantidad
+            $QuantityAvailable = $ingredients[$ingredient] ?? 0;
+
+            //me fijo si la cantidad necesaria e menor a la cantidad disponible
+            if ($amountNecessary < $QuantityAvailable) {
+                $maxCakes = floor($QuantityAvailable / $amountNecessary);
+                $numberOfCakes = min($numberOfCakes, $maxCakes);
+            } else {
+                //en caso contrario retorno un 0 y aviso que no alcanza para preparar la receta
+                echo "No se pueden hacer pasteles con esa cantidad de ingredientes." . PHP_EOL;
+                return 0;
+            }
+        }
+
+         // Retorno la cantidad de pasteles 
+         return $numberOfCakes;
     }
-}
+    }
