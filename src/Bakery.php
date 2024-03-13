@@ -23,7 +23,7 @@ class Bakery
             //obtengo la cantidad de igrediente actual, y si no hay ingrediente disponible le asigno 0 como cantidad
             $QuantityAvailable = $ingredients[$ingredient] ?? 0;
 
-            //me fijo si la cantidad necesaria es menor o = a 0, o si las cantidades disponibles son menores a 0 
+            //me fijo si la cantidad necesaria e menor a la cantidad disponible
             if ($amountNecessary < $QuantityAvailable) {
                 $maxCakes = floor($QuantityAvailable / $amountNecessary);
                 $numberOfCakes = min($numberOfCakes, $maxCakes);
