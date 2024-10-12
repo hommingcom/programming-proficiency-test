@@ -16,8 +16,16 @@ class Bakery
     {
         $numberOfCakes = 0;
 
-        // Complete the function
+        $resultado = array_diff_key($recipe, $ingredients);
+        
+        if (!empty($resultado)) return 0;        
+        
+        foreach($recipe as $key => $val) {
+            $result[] = floor($ingredients[$key]/$val);
+        }        
+        $numberOfCakes = min($result);
 
         return $numberOfCakes;
     }
+    
 }
