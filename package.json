@@ -9,6 +9,7 @@
     "lint": "node_modules/.bin/vue-cli-service lint resources"
   },
   "dependencies": {
+    "bootstrap": "^5.3.3",
     "core-js": "^3.6.5",
     "vue": "^2.6.11"
   },

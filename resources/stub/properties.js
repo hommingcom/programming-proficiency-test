@@ -1,0 +1,68 @@
+const properties = [
+  {
+    id: 1,
+    name: 'Casa Grande',
+    type: 'Casa',
+    user: 'Usuario 1',
+    rentedMonths: ['Enero', 'Febrero', 'Marzo'],
+    isRented: true,
+  },
+  {
+    id: 2,
+    name: 'Apartamento en la playa',
+    type: 'Apartamento',
+    user: 'Usuario 2',
+    rentedMonths: ['Abril', 'Mayo'],
+    isRented: false,
+  },
+  {
+    id: 3,
+    name: 'Oficina Corporativa',
+    type: 'Oficina',
+    user: 'Usuario 3',
+    rentedMonths: ['Junio', 'Julio', 'Agosto'],
+    isRented: true,
+  },
+  {
+    id: 4,
+    name: 'Local Comercial',
+    type: 'Local',
+    user: 'Usuario 4',
+    rentedMonths: ['Septiembre'],
+    isRented: true,
+  },
+  {
+    id: 5,
+    name: 'Terreno Vacío',
+    type: 'Terreno',
+    user: 'Usuario 5',
+    rentedMonths: [],
+    isRented: false,
+  },
+  {
+    id: 6,
+    name: 'Villa Tropical',
+    type: 'Villa',
+    user: 'Usuario 6',
+    rentedMonths: ['Diciembre', 'Enero'],
+    isRented: true,
+  },
+  {
+    id: 7,
+    name: 'Apartamento Moderno',
+    type: 'Apartamento',
+    user: 'Usuario 7',
+    rentedMonths: ['Mayo', 'Junio', 'Julio'],
+    isRented: false,
+  },
+  {
+    id: 8,
+    name: 'Casa de Campo',
+    type: 'Casa',
+    user: 'Usuario 8',
+    rentedMonths: ['Agosto', 'Septiembre'],
+    isRented: false,
+  },
+];
+
+export default properties;
