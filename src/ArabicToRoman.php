@@ -25,7 +25,7 @@ class ArabicToRoman
      *
      * @param int $arabicNumber Arabic number to be transformed (e.g. 121)
      *
-     * @return string The roman number equivalent (e.g. CXXI)
+     * @return ?string The roman number equivalent (e.g. CXXI)
      */
     public static function transform(int $arabicNumber): ?string
     {
