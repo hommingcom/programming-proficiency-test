@@ -10,14 +10,21 @@ class Bakery
      * @param array $recipe      Contains the necessary ingredients to make one cake
      * @param array $ingredients Contains the amount of ingredients you have available to bake
      *
-     * @return int The number of cakes you can bake
+     * @return ?int The number of cakes you can bake
      */
-    public static function calculateOutput(array $recipe, array $ingredients): int
+    public static function calculateOutput(array $recipe, array $ingredients): ?int
     {
-        $numberOfCakes = 0;
+        if (empty($recipe)) {
+            return null;
+        }
 
-        // Complete the function
+        $cakesPerIngredient = array_map(function ($amountNeeded, $ingredient) use ($ingredients) {
+            return isset($ingredients[$ingredient])
+                ? intdiv($ingredients[$ingredient], $amountNeeded)
+                : 0;
+        }, $recipe, array_keys($recipe));
 
-        return $numberOfCakes;
+        return min($cakesPerIngredient);
     }
+
 }
