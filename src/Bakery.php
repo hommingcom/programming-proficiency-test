@@ -17,6 +17,18 @@ class Bakery
         $numberOfCakes = 0;
 
         // Complete the function
+        $amount_ingredient_recipe=[];
+        foreach($recipe as $ingredient=>$amount_recipe){
+            if(isset($ingredients[$ingredient])){
+                $amount_available=$ingredients[$ingredient];
+                $times=intdiv($amount_available,$amount_recipe);
+                array_push($amount_ingredient_recipe,$times);
+            }
+            else{
+                return 0;
+            }
+        }
+        $numberOfCakes=min($amount_ingredient_recipe);
 
         return $numberOfCakes;
     }

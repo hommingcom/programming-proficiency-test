@@ -1,6 +1,4 @@
-version: '3.7'
 services:
-
   # PHP & NodeJS Service
   app:
     build:
@@ -9,6 +7,8 @@ services:
     restart: unless-stopped
     working_dir: /programming-proficiency-test
     volumes:
-      - ${PWD}:/programming-proficiency-test
+      - .:/programming-proficiency-test
+    environment:
+      - PWD=/programming-proficiency-test
     ports:
       - '8080:8080'
