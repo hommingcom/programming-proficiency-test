@@ -18,6 +18,10 @@ class Bakery
             return null;
         }
 
+        if (count($recipe) > count($ingredients)) {
+            return 0;
+        }
+
         $maxPossibleCakes = PHP_INT_MAX;
 
         foreach ($recipe as $ingredient => $amountNeeded) {
