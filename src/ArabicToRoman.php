@@ -4,21 +4,8 @@ namespace App;
 
 class ArabicToRoman
 {
-    public const array NUMBER_MAP = [
-        1000 => 'M',
-        900 => 'CM',
-        500 => 'D',
-        400 => 'CD',
-        100 => 'C',
-        90 => 'XC',
-        50 => 'L',
-        40 => 'XL',
-        10 => 'X',
-        9 => 'IX',
-        5 => 'V',
-        4 => 'IV',
-        1 => 'I',
-    ];
+    public const array VALUES = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1];
+    public const array SYMBOLS = ['M', 'CM', 'D', 'CD', 'C', 'XC', 'L', 'XL', 'X', 'IX', 'V', 'IV', 'I'];
 
     /**
      * Receive an arabic number and return a string with its roman counterpart
@@ -34,10 +21,33 @@ class ArabicToRoman
         }
 
         $romanNumber = '';
+        $length = count(self::VALUES);
 
-        foreach (self::NUMBER_MAP as $value => $symbol) {
+        for ($i = 0; $i < $length; $i++) {
+            $value = self::VALUES[$i];
+            if ($arabicNumber >= $value) {
+                $count = (int) ($arabicNumber / $value);
+                $romanNumber .= str_repeat(self::SYMBOLS[$i], $count);
+                $arabicNumber %= $value;
+            }
+        }
+
+        return $romanNumber;
+    }
+
+    public static function transformOld(int $arabicNumber): ?string
+    {
+        if ($arabicNumber <= 0) {
+            return null;
+        }
+
+        $romanNumber = '';
+        $length = count(self::VALUES);
+
+        for ($i = 0; $i < $length; $i++) {
+            $value = self::VALUES[$i];
             while ($arabicNumber >= $value) {
-                $romanNumber .= $symbol;
+                $romanNumber .= self::SYMBOLS[$i];
                 $arabicNumber -= $value;
             }
         }
