@@ -18,13 +18,21 @@ class Bakery
             return null;
         }
 
-        $cakesPerIngredient = array_map(function ($amountNeeded, $ingredient) use ($ingredients) {
-            return isset($ingredients[$ingredient])
-                ? intdiv($ingredients[$ingredient], $amountNeeded)
-                : 0;
-        }, $recipe, array_keys($recipe));
+        $maxPossibleCakes = PHP_INT_MAX;
 
-        return min($cakesPerIngredient);
+        foreach ($recipe as $ingredient => $amountNeeded) {
+            if (! isset($ingredients[$ingredient]) || $ingredients[$ingredient] < $amountNeeded) {
+                return 0;
+            }
+
+            $cakesForIngredient = intdiv($ingredients[$ingredient], $amountNeeded);
+
+            if ($cakesForIngredient < $maxPossibleCakes) {
+                $maxPossibleCakes = $cakesForIngredient;
+            }
+        }
+
+        return $maxPossibleCakes;
     }
 
 }
