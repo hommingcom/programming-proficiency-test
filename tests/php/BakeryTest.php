@@ -1,6 +1,6 @@
 <?php
 
-namespace UnitTestFiles\Test;
+namespace Tests;
 
 use App\Bakery;
 use PHPUnit\Framework\TestCase;
@@ -46,4 +46,21 @@ class BakeryTest extends TestCase
             array_fill(0, 1000000, 1000),
         ));
     }
+
+    function testIngredientsIsEmpty()
+    {
+        $this->assertEquals(0, Bakery::calculateOutput(
+            ['flour' => 1200, 'lemon' => 100, 'cream' => 200, 'sugar' => 300],
+            []
+        ));
+    }
+
+    function testRecipeIsEmpty()
+    {
+        $this->assertEquals(null , Bakery::calculateOutput(
+            [],
+            ['flour' => 1200, 'lemon' => 100, 'cream' => 200, 'sugar' => 300],
+        ));
+    }
+
 }
